@@ -1,12 +1,10 @@
 # file variables
-source="Deque.c++"
+source="Deque.h"
 unitFile="TestDeque.c++"
 outFile="TestDeque.out"
 
 clear
-echo COMPILING $source...
-g++ -ansi -pedantic -Wall $source -o $source.app
-echo COMPILING $unitFile...
+echo COMPILING $source and $unitFile...
 g++ -ansi -pedantic -ldl -Wall $unitFile -lcppunit -o $unitFile.app
 	if ([ $? == 0 ]); then
 echo RUNNING UNIT TESTS...

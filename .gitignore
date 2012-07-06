@@ -12,3 +12,4 @@ a.out
 
 # repo specific
 *.app
+*.sublime-*
