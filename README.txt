@@ -8,11 +8,11 @@ E-mail: kieldro@gmail.com
 Estimated number of hours: 25
 Actual    number of hours: 
 
-Partner First Name: 
-Partner Last Name: 
-Partner EID: 
-Partner E-mail: 
-Partner Estimated number of hours: 
+Partner First Name: Fionnuala
+Partner Last Name: Gunter
+Partner EID: fg3474
+Partner E-mail: fionnuala.gunter@gmail.com
+Partner Estimated number of hours: 25
 Partner Actual    number of hours: 
 
 Turnin CS Username: keo
