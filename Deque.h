@@ -169,6 +169,7 @@ class MyDeque {
 				// ----
 				// data
 				// <your data>
+				
 
 			private:
 				// -----
@@ -183,7 +184,7 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				iterator (/* <your arguments> */) {
+				iterator (/* your args */) {
 					// <your code>
 					assert(valid());}
 
@@ -324,7 +325,7 @@ class MyDeque {
 				// valid
 				bool valid () const {
 					// <your code>
-					return true;}
+					return (!_elements && !_size && !_cap) || (_elements <= _size) && (_size <= _cap);}
 
 			public:
 				// -----------
@@ -437,8 +438,11 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type()) {
-			// <your code>
+		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
+			: _a(a) {
+			_elements = _a.allocate(s);
+			_size = _cap = _elements + s;
+			uninitialized_fill(_a, begin(), end(), v);
 			assert(valid() );
 		}
 
@@ -518,9 +522,8 @@ class MyDeque {
 		 */
 		reference back () {
 			// <your code>
-			// dummy is just to be able to compile the skeleton, remove it
-			static value_type dummy;
-			return dummy;}
+			assert(! empty());
+			return *(_size - 1);}
 
 		/**
 		 * <your documentation>
@@ -535,7 +538,8 @@ class MyDeque {
 		 */
 		iterator begin () {
 			// <your code>
-			return iterator(/* <your arguments> */);}
+			return iterator(_elements, size());}
+			//return iterator(/* <your arguments> */);}
 
 		/**
 		 * <your documentation>
