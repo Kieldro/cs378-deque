@@ -495,15 +495,22 @@ class MyDeque {
 		 */
 		reference at (size_type index) {
 			// <your code>
-			// dummy is just to be able to compile the skeleton, remove it
+			if (index >= size() )
+				throw std::out_of_range("deque::_M_range_check");
+			
 			static value_type dummy;
-			return dummy;}
+			return dummy;
+		}
 
 		/**
 		 * <your documentation>
 		 */
 		const_reference at (size_type index) const {
-			return const_cast<MyDeque*>(this)->at(index);}
+			if (index >= size() )
+				throw std::out_of_range("deque::_M_range_check");
+			
+			return const_cast<MyDeque*>(this)->at(index);
+		}
 
 		// ----
 		// back
