@@ -38,6 +38,12 @@ inline bool operator >= (const T& lhs, const T& rhs) {
 */
 
 using namespace std::rel_ops;
+void printD(){
+	cerr << "contents: ";
+	for(int i = 0; i < d.size(); ++i)
+		cerr << d[i];
+	 cerr << endl;
+}
 
 template <typename T, typename A = std::allocator<T> >
 class my_vector {
