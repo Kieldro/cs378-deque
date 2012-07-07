@@ -70,17 +70,17 @@ class MyDeque {
 	public:
 		// --------
 		// typedefs
-		typedef A										allocator_type;
-		typedef typename allocator_type::value_type	  value_type;		// same as T*? why typedef?
+		typedef A											allocator_type;
+		typedef typename allocator_type::value_type			value_type;		// same as T*? why typedef?
 
-		typedef typename allocator_type::size_type	   size_type;
-		typedef typename allocator_type::difference_type difference_type;
+		typedef typename allocator_type::size_type			size_type;
+		typedef typename allocator_type::difference_type	difference_type;
 
-		typedef typename allocator_type::pointer		 pointer;
-		typedef typename allocator_type::const_pointer   const_pointer;
+		typedef typename allocator_type::pointer			pointer;
+		typedef typename allocator_type::const_pointer		const_pointer;
 
-		typedef typename allocator_type::reference	   reference;
-		typedef typename allocator_type::const_reference const_reference;
+		typedef typename allocator_type::reference			reference;
+		typedef typename allocator_type::const_reference	const_reference;
 
 	public:
 		// -----------
@@ -107,12 +107,11 @@ class MyDeque {
 	private:
 		// ----
 		// data
-		allocator_type a;		// allocator
+		allocator_type _a;		// allocator
 
-		// <your data>
-		pointer elements;	// array to hold elements
+		pointer _elements;	// array to hold elements
 		pointer _size;		// pointer to the end of used space
-		pointer cap;		// pointer to the end of array?
+		pointer _cap;		// pointer to the end of array?
 
 	private:
 		// -----
@@ -427,11 +426,11 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-		//	: size(0), capacity(2)
+			: _a(a), _elements(0), _size(0), _cap(0)
 		{
-			// <your code>
+			//elements = _size = cap = 0;
 			
-			if(DEBUG)cerr << "array size: " << sizeof(elements) << endl;
+			//if(DEBUG)cerr << "array size: " << sizeof(elements) << endl;
 			assert(valid() );
 		}
 
@@ -662,8 +661,9 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		size_type size () const {
-			// <your code>
-			return size;}
+			//if(DEBUG)cerr << "size: " << size << endl;
+			return _size - _elements;
+		}
 
 		// ----
 		// swap
