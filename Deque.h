@@ -71,7 +71,7 @@ class MyDeque {
 		// --------
 		// typedefs
 		typedef A										allocator_type;
-		typedef typename allocator_type::value_type	  value_type;
+		typedef typename allocator_type::value_type	  value_type;		// same as T*? why typedef?
 
 		typedef typename allocator_type::size_type	   size_type;
 		typedef typename allocator_type::difference_type difference_type;
@@ -107,12 +107,12 @@ class MyDeque {
 	private:
 		// ----
 		// data
-		allocator_type _a;
+		allocator_type a;		// allocator
 
 		// <your data>
-		T array[2];
-		int _size;
-		int capacity;
+		pointer elements;	// array to hold elements
+		pointer _size;		// pointer to the end of used space
+		pointer cap;		// pointer to the end of array?
 
 	private:
 		// -----
@@ -160,8 +160,6 @@ class MyDeque {
 
 				// ----------
 				// operator -
-				// ----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -183,8 +181,6 @@ class MyDeque {
 			public:
 				// -----------
 				// constructor
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -199,8 +195,6 @@ class MyDeque {
 
 				// ----------
 				// operator *
-				// ----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -212,8 +206,6 @@ class MyDeque {
 
 				// -----------
 				// operator ->
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -222,8 +214,6 @@ class MyDeque {
 
 				// -----------
 				// operator ++
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -243,8 +233,6 @@ class MyDeque {
 
 				// -----------
 				// operator --
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -264,8 +252,6 @@ class MyDeque {
 
 				// -----------
 				// operator +=
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -276,8 +262,6 @@ class MyDeque {
 
 				// -----------
 				// operator -=
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -293,8 +277,6 @@ class MyDeque {
 			public:
 				// --------
 				// typedefs
-				// --------
-
 				typedef std::bidirectional_iterator_tag   iterator_category;
 				typedef typename MyDeque::value_type	  value_type;
 				typedef typename MyDeque::difference_type difference_type;
@@ -304,8 +286,6 @@ class MyDeque {
 			public:
 				// -----------
 				// operator ==
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -321,8 +301,6 @@ class MyDeque {
 
 				// ----------
 				// operator +
-				// ----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -331,8 +309,6 @@ class MyDeque {
 
 				// ----------
 				// operator -
-				// ----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -342,15 +318,11 @@ class MyDeque {
 			private:
 				// ----
 				// data
-				// ----
-
 				// <your data>
 
 			private:
 				// -----
 				// valid
-				// -----
-
 				bool valid () const {
 					// <your code>
 					return true;}
@@ -358,8 +330,6 @@ class MyDeque {
 			public:
 				// -----------
 				// constructor
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -374,8 +344,6 @@ class MyDeque {
 
 				// ----------
 				// operator *
-				// ----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -387,8 +355,6 @@ class MyDeque {
 
 				// -----------
 				// operator ->
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -397,7 +363,6 @@ class MyDeque {
 
 				// -----------
 				// operator ++
-				// -----------
 
 				/**
 				 * <your documentation>
@@ -418,8 +383,6 @@ class MyDeque {
 
 				// -----------
 				// operator --
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -439,8 +402,6 @@ class MyDeque {
 
 				// -----------
 				// operator +=
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -451,8 +412,6 @@ class MyDeque {
 
 				// -----------
 				// operator -=
-				// -----------
-
 				/**
 				 * <your documentation>
 				 */
@@ -468,12 +427,11 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-		//: size(0), capacity(2)
+		//	: size(0), capacity(2)
 		{
 			// <your code>
-			T _a[capacity];
-			array = _a;
-			if(DEBUG)cerr << "array size: " << sizeof(array) << endl;
+			
+			if(DEBUG)cerr << "array size: " << sizeof(elements) << endl;
 			assert(valid() );
 		}
 
@@ -500,12 +458,11 @@ class MyDeque {
 		 */
 		~MyDeque () {
 			// <your code>
-			assert(valid() );}
+			assert(valid() );
+		}
 
 		// ----------
 		// operator =
-		// ----------
-
 		/**
 		 * <your documentation>
 		 */
@@ -550,8 +507,6 @@ class MyDeque {
 
 		// ----
 		// back
-		// ----
-
 		/**
 		 * <your documentation>
 		 */
@@ -618,8 +573,6 @@ class MyDeque {
 
 		// -----
 		// erase
-		// -----
-
 		/**
 		 * <your documentation>
 		 */
@@ -647,8 +600,6 @@ class MyDeque {
 
 		// ------
 		// insert
-		// ------
-
 		/**
 		 * <your documentation>
 		 */
@@ -659,8 +610,6 @@ class MyDeque {
 
 		// ---
 		// pop
-		// ---
-
 		/**
 		 * <your documentation>
 		 */
@@ -677,8 +626,6 @@ class MyDeque {
 
 		// ----
 		// push
-		// ----
-
 		/**
 		 * <your documentation>
 		 */
@@ -695,8 +642,6 @@ class MyDeque {
 
 		// ------
 		// resize
-		// ------
-
 		/**
 		 * <your documentation>
 		 */
