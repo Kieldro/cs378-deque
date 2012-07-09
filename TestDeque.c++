@@ -92,8 +92,7 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_back_2 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
+		C x(3,11);
 		
 		//if(DEBUG)cerr << "x.back(): " << x.back() << endl;
 		CPPUNIT_ASSERT(!x.empty() );
@@ -139,9 +138,8 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 
 	void test_front_2 () {
-		int a[] = {3, 7, 11};
-				C x(a, a+3);
-		CPPUNIT_ASSERT(x.front() == 3);
+		C x(3,11);
+		CPPUNIT_ASSERT(x.front() == 11);
 	}
 
 	void test_front_3 () {
@@ -178,14 +176,13 @@ struct TestDeque : CppUnit::TestFixture {
 	// --------
 	// pop_back
 	void test_pop_back_1 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
+		C x(3,11);
 		x.pop_back();
 		CPPUNIT_ASSERT(x.size() == 2);
-		CPPUNIT_ASSERT(x.back() == 7);
+		CPPUNIT_ASSERT(x.back() == 11);
 		x.pop_back();
 		CPPUNIT_ASSERT(x.size() == 1);
-		CPPUNIT_ASSERT(x.back() == 3);
+		CPPUNIT_ASSERT(x.back() == 11);
 		x.pop_back();
 		CPPUNIT_ASSERT(x.size() == 0);
 	}
@@ -206,11 +203,10 @@ struct TestDeque : CppUnit::TestFixture {
 	// ---------
 	// pop_front
 	void test_pop_front_1 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
+		C x(3,11);
 		x.pop_front();
 		CPPUNIT_ASSERT(x.size() == 2);
-		CPPUNIT_ASSERT(x.front() == 7);
+		CPPUNIT_ASSERT(x.front() == 11);
 		x.pop_front();
 		CPPUNIT_ASSERT(x.size() == 1);
 		CPPUNIT_ASSERT(x.front() == 11);
@@ -234,10 +230,9 @@ struct TestDeque : CppUnit::TestFixture {
 	// --
 	// at
 	void test_at_1 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
-		CPPUNIT_ASSERT(x.at(0) == 3);
-		CPPUNIT_ASSERT(x.at(1) == 7);
+		C x(3,11);
+		CPPUNIT_ASSERT(x.at(0) == 11);
+		CPPUNIT_ASSERT(x.at(1) == 11);
 		CPPUNIT_ASSERT(x.at(2) == 11);
 	}
 	
@@ -267,10 +262,9 @@ struct TestDeque : CppUnit::TestFixture {
 	// ---------
 	// subscript
 	void test_subscript_1 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
-		CPPUNIT_ASSERT(x[0] == 3);
-		CPPUNIT_ASSERT(x[1] == 7);
+		C x(3,11);
+		CPPUNIT_ASSERT(x[0] == 11);
+		CPPUNIT_ASSERT(x[1] == 11);
 		CPPUNIT_ASSERT(x[2] == 11);
 	}
 	
@@ -344,16 +338,14 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_insert_3 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
+		C x(3,11);
 		x.insert(x.begin()+3, 13);
 		CPPUNIT_ASSERT(x[3] == 13);
 		CPPUNIT_ASSERT(x.size() == 4);
 	}
 	
 	void test_insert_4 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
+		C x(3,11);
 		x.insert(x.begin(), 13);
 		CPPUNIT_ASSERT(x[0] == 13);
 		CPPUNIT_ASSERT(x.size() == 4);
@@ -393,52 +385,49 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_resize_5 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
+		C x(5,7);
 		CPPUNIT_ASSERT(x.size() == 5);
 		x.resize(3);
 		CPPUNIT_ASSERT(x.size() == 3);
-		CPPUNIT_ASSERT(x[0] == 3);
+		CPPUNIT_ASSERT(x[0] == 7);
 		CPPUNIT_ASSERT(x[1] == 7);
-		CPPUNIT_ASSERT(x[2] == 11);
+		CPPUNIT_ASSERT(x[2] == 7);
 	}
 	
 	void test_resize_6 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
+		C x(5,7);
 		CPPUNIT_ASSERT(x.size() == 5);
 		x.resize(3, 2);
 		CPPUNIT_ASSERT(x.size() == 3);
-		CPPUNIT_ASSERT(x[0] == 3);
+		CPPUNIT_ASSERT(x[0] == 7);
 		CPPUNIT_ASSERT(x[1] == 7);
-		CPPUNIT_ASSERT(x[2] == 11);
+		CPPUNIT_ASSERT(x[2] == 7);
 	}
 	
 	// -----
 	// erase
 	void test_erase_1 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
-		x.erase(x.begin()+0 );
+		C x(5,17);
+		x.erase(x.begin()+0);
 		CPPUNIT_ASSERT(x.size() == 4);
-		CPPUNIT_ASSERT(x[0] == 7);
+		CPPUNIT_ASSERT(x[0] == 17);
 	}
 	
 	void test_erase_2 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
-		x.erase(x.begin()+2 );
+		C x(5,17);
+		x.erase(x.begin()+2);
 		CPPUNIT_ASSERT(x.size() == 4);
-		CPPUNIT_ASSERT(x[2] == 13);
-		CPPUNIT_ASSERT(x[1] == 7);
+		CPPUNIT_ASSERT(x[0] == 17);
+		CPPUNIT_ASSERT(x[1] == 17);
+		CPPUNIT_ASSERT(x[2] == 17);
+		CPPUNIT_ASSERT(x[3] == 17);
 	}
 	
 	void test_erase_3 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
-		x.erase(x.begin()+5 );
+		C x(5,17);
+		x.erase(x.begin()+5);
 		CPPUNIT_ASSERT(x.size() == 4);
-		CPPUNIT_ASSERT(x[3] == 13);
+		CPPUNIT_ASSERT(x[3] == 17);
 	}
 	
 	// -----
@@ -464,18 +453,17 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_swap_3 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
+		C x(5, 17);
 		C y(2, 5);
 		x.swap(y);
 		CPPUNIT_ASSERT(x.size() == 2);
 		CPPUNIT_ASSERT(y.size() == 5);
 		CPPUNIT_ASSERT(x[0] == 5);
 		CPPUNIT_ASSERT(x[1] == 5);
-		CPPUNIT_ASSERT(y[0] == 3);
-		CPPUNIT_ASSERT(y[1] == 7);
-		CPPUNIT_ASSERT(y[2] == 11);
-		CPPUNIT_ASSERT(y[3] == 13);
+		CPPUNIT_ASSERT(y[0] == 17);
+		CPPUNIT_ASSERT(y[1] == 17);
+		CPPUNIT_ASSERT(y[2] == 17);
+		CPPUNIT_ASSERT(y[3] == 17);
 		CPPUNIT_ASSERT(y[4] == 17);
 	}
 	
@@ -494,8 +482,7 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_clear_3 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
+		C x(3,17);
 		x.clear();
 		CPPUNIT_ASSERT(x.size() == 0);
 		x.push_back(3);
@@ -505,17 +492,18 @@ struct TestDeque : CppUnit::TestFixture {
 	// ------
 	// op equal
 	void test_op_equal_1 () {
-		int a[] = {3, 7, 11, 13, 17};
-		C x(a, a+5);
+		C x(5,17);
 		C y(3, -2);
 		y = x;
 		CPPUNIT_ASSERT(y.size() == 5);
 		CPPUNIT_ASSERT(x.size() == 5);
-		CPPUNIT_ASSERT(y[0] == 3);
-		CPPUNIT_ASSERT(y[2] == 11);
+		CPPUNIT_ASSERT(y[0] == 17);
+		CPPUNIT_ASSERT(y[1] == 17);
+		CPPUNIT_ASSERT(y[2] == 17);
+		CPPUNIT_ASSERT(y[3] == 17);
 		CPPUNIT_ASSERT(y[4] == 17);
 		y[1] = -23;
-		CPPUNIT_ASSERT(x[1] == 7);
+		CPPUNIT_ASSERT(x[1] == 17);
 	}
 	
 	void test_op_equal_2 () {
