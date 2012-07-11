@@ -28,21 +28,6 @@ To test the program:
 // TestDeque
 template <typename C>
 struct TestDeque : CppUnit::TestFixture {
-	// --------------------
-	// iterator constructor
-	void test_itcon_1 () {
-		C x;
-		typename C::iterator it(&x);
-		CPPUNIT_ASSERT(true);
-	}
-	
-	void test_itstar_1 () {
-		C x;
-		typename C::iterator it(&x);
-		CPPUNIT_ASSERT(true);
-	}
-	
-	
 	// ----
 	// constructor
 	void test_constructor_1 () {
@@ -543,14 +528,16 @@ struct TestDeque : CppUnit::TestFixture {
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
-	CPPUNIT_TEST(test_itcon_1);
+	//CPPUNIT_TEST(test_itcon_1);
+	//CPPUNIT_TEST(test_iterator_equality_1);
+        //CPPUNIT_TEST(test_iterator_equality_2);
 	CPPUNIT_TEST(test_constructor_1);
 	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
 	CPPUNIT_TEST(test_constructor_4);
 	CPPUNIT_TEST(test_size_1);
 	CPPUNIT_TEST(test_size_2);
-/*	CPPUNIT_TEST(test_back_1);
+	CPPUNIT_TEST(test_back_1);
 	CPPUNIT_TEST(test_back_2);
 	CPPUNIT_TEST(test_back_3);
 	CPPUNIT_TEST(test_push_back_1);
@@ -575,10 +562,10 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_subscript_1);
 	CPPUNIT_TEST(test_subscript_2);
 	CPPUNIT_TEST(test_subscript_3);
-*/	CPPUNIT_TEST(test_begin_1);
+	CPPUNIT_TEST(test_begin_1);
 	CPPUNIT_TEST(test_begin_2);
 	CPPUNIT_TEST(test_begin_3);
-/*	CPPUNIT_TEST(test_end_1);
+	CPPUNIT_TEST(test_end_1);
 	CPPUNIT_TEST(test_end_2);
 	CPPUNIT_TEST(test_end_3);
 	CPPUNIT_TEST(test_insert_1);
@@ -602,7 +589,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_op_equal_1);
 	CPPUNIT_TEST(test_op_equal_2);
 	CPPUNIT_TEST(test_op_equal_3);
-	*/
+	
 	CPPUNIT_TEST_SUITE_END();
 };
 
@@ -614,8 +601,8 @@ int main () {
 	cout << "TestDeque.c++" << endl << endl;
 
 	CppUnit::TextTestRunner tr;
-	//tr.addTest(TestDeque<   deque<int> >::suite() );
-	tr.addTest(TestDeque< MyDeque<int> >::suite() );
+	tr.addTest(TestDeque<   deque<int> >::suite() );
+	//tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 
 	cout << "Done." << endl;
