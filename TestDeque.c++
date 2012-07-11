@@ -523,8 +523,8 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
 	CPPUNIT_TEST(test_constructor_1);
-	CPPUNIT_TEST(test_constructor_2);
-	CPPUNIT_TEST(test_constructor_3);
+//	CPPUNIT_TEST(test_constructor_2);
+/*	CPPUNIT_TEST(test_constructor_3);
 	CPPUNIT_TEST(test_constructor_4);
 	CPPUNIT_TEST(test_size_1);
 	CPPUNIT_TEST(test_size_2);
@@ -581,7 +581,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_op_equal_1);
 	CPPUNIT_TEST(test_op_equal_2);
 	CPPUNIT_TEST(test_op_equal_3);
-	
+	*/
 	CPPUNIT_TEST_SUITE_END();
 };
 
@@ -593,8 +593,8 @@ int main () {
 	cout << "TestDeque.c++" << endl << endl;
 
 	CppUnit::TextTestRunner tr;
-	tr.addTest(TestDeque<   deque<int> >::suite() );
-	//tr.addTest(TestDeque< MyDeque<int> >::suite() );
+	//tr.addTest(TestDeque<   deque<int> >::suite() );
+	tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 
 	cout << "Done." << endl;

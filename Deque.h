@@ -108,7 +108,8 @@ class MyDeque {
 		// ----
 		// data
 		allocator_type _a;		// allocator
-
+		
+		pointer _start;
 		pointer _elements;	// array to hold elements
 		pointer _size;		// pointer to the end of used space
 		pointer _cap;		// pointer to the end of array?
@@ -117,8 +118,10 @@ class MyDeque {
 		// -----
 		// valid
 		bool valid () const {
-			// <your code>
-			return true;}
+			
+			return (!_start && !_elements && !_size && !_cap) ||
+				((_start <= _elements) && (_elements <= _size) && (_size <= _cap));
+		}
 
 	public:
 		// --------
@@ -427,11 +430,8 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-			: _a(a), _elements(0), _size(0), _cap(0)
+			: _a(a), _start(0), _elements(0), _size(0), _cap(0)
 		{
-			//elements = _size = cap = 0;
-			
-			//if(DEBUG)cerr << "array size: " << sizeof(elements) << endl;
 			assert(valid() );
 		}
 
