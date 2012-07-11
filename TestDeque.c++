@@ -89,8 +89,6 @@ struct TestDeque : CppUnit::TestFixture {
 	
 	void test_back_2 () {
 		C x(3,11);
-		
-		//if(DEBUG)cerr << "x.back(): " << x.back() << endl;
 		CPPUNIT_ASSERT(!x.empty() );
 		CPPUNIT_ASSERT(x.back() == 11);
 	}
@@ -101,7 +99,24 @@ struct TestDeque : CppUnit::TestFixture {
 		x.push_back(3);
 		CPPUNIT_ASSERT(x.back() == 3);
 	}
-	
+
+	// ----------
+	// back const
+	void test_back_const_1 () {
+		const C x(1,3);
+		CPPUNIT_ASSERT(x.back() == 3);
+	}
+
+	void test_back_const_2 () {
+		const C x(3, 11);
+		CPPUNIT_ASSERT(x.back() == 11);
+	}
+
+	void test_back_const_3 () {
+		const C x(100, 7);
+		CPPUNIT_ASSERT(x.back() == 7);
+	}
+
 	// ---------
 	// push_back
 	void test_push_back_1 () {
@@ -143,6 +158,23 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.empty());
 		x.push_front(3);
 		CPPUNIT_ASSERT(x.front() == 3);
+	}
+	
+	// -----------
+	// front_const
+	void test_front_const_1 () {
+		const C x(10, 3);
+		CPPUNIT_ASSERT(x.front() == 3);
+	}
+
+	void test_front_const_2 () {
+		const C x(3, 11);
+		CPPUNIT_ASSERT(x.front() == 11);
+	}
+
+	void test_front_const_3 () {
+		const C x(100, 7);
+		CPPUNIT_ASSERT(x.front() == 7);
 	}
 
 	// ----------
@@ -537,12 +569,18 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_back_1);
 	CPPUNIT_TEST(test_back_2);
 	CPPUNIT_TEST(test_back_3);
+	CPPUNIT_TEST(test_back_const_1);
+        CPPUNIT_TEST(test_back_const_2);
+        CPPUNIT_TEST(test_back_const_3);
 	CPPUNIT_TEST(test_push_back_1);
 	CPPUNIT_TEST(test_push_back_2);
 	CPPUNIT_TEST(test_push_back_3);
 	CPPUNIT_TEST(test_front_1);
 	CPPUNIT_TEST(test_front_2);
 	CPPUNIT_TEST(test_front_3);
+	CPPUNIT_TEST(test_front_const_1);
+        CPPUNIT_TEST(test_front_const_2);
+        CPPUNIT_TEST(test_front_const_3);
 	CPPUNIT_TEST(test_push_front_1);
 	CPPUNIT_TEST(test_push_front_2);
 	CPPUNIT_TEST(test_push_front_3);
