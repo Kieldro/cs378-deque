@@ -81,6 +81,7 @@ class MyDeque {
 
 		typedef typename allocator_type::reference			reference;
 		typedef typename allocator_type::const_reference	const_reference;
+		
 
 	public:
 		// -----------
@@ -135,6 +136,7 @@ class MyDeque {
 				typedef typename MyDeque::difference_type difference_type;
 				typedef typename MyDeque::pointer		 pointer;
 				typedef typename MyDeque::reference	   reference;
+				//using MyDeque::size_type;
 
 			public:
 				// -----------
@@ -171,7 +173,8 @@ class MyDeque {
 			private:
 				// ----
 				// data
-				// <your data>
+				MyDeque* _d;
+				MyDeque::size_type idx;
 				
 
 			private:
@@ -187,9 +190,11 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				iterator (/* your args */) {
-					// <your code>
-					assert(valid());}
+				iterator (MyDeque* d, MyDeque::size_type i = 0) :
+				_d(d), idx(i)
+				{
+					assert(valid() );
+				}
 
 				// Default copy, destructor, and copy assignment.
 				// iterator (const iterator&);
@@ -205,7 +210,8 @@ class MyDeque {
 					// <your code>
 					// dummy is just to be able to compile the skeleton, remove it
 					static value_type dummy;
-					return dummy;}
+					return dummy;
+				}
 
 				// -----------
 				// operator ->
@@ -440,7 +446,7 @@ class MyDeque {
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
-			_elements = _a.allocate(s);
+			_start = _elements = _a.allocate(s);
 			_size = _cap = _elements + s;
 			uninitialized_fill(_a, begin(), end(), v);
 			assert(valid() );
@@ -537,9 +543,8 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		iterator begin () {
-			// <your code>
-			return iterator(_elements, size());}
-			//return iterator(/* <your arguments> */);}
+			return iterator(this, 0);
+		}
 
 		/**
 		 * <your documentation>
@@ -641,7 +646,8 @@ class MyDeque {
 		 */
 		void push_back (const_reference) {
 			// <your code>
-			assert(valid());}
+			assert(valid() );
+		}
 
 		/**
 		 * <your documentation>

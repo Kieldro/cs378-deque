@@ -28,6 +28,21 @@ To test the program:
 // TestDeque
 template <typename C>
 struct TestDeque : CppUnit::TestFixture {
+	// --------------------
+	// iterator constructor
+	void test_itcon_1 () {
+		C x;
+		typename C::iterator it(&x);
+		CPPUNIT_ASSERT(true);
+	}
+	
+	void test_itstar_1 () {
+		C x;
+		typename C::iterator it(&x);
+		CPPUNIT_ASSERT(true);
+	}
+	
+	
 	// ----
 	// constructor
 	void test_constructor_1 () {
@@ -273,13 +288,13 @@ struct TestDeque : CppUnit::TestFixture {
 	// -----
 	// begin
 	void test_begin_1 () {
-		C x(5);
+		C x;
 		typename C::iterator b = x.begin();
 		CPPUNIT_ASSERT(b == x.begin() );
 	}
 	
 	void test_begin_2 () {
-		C x;
+		C x(5);
 		typename C::iterator b = x.begin();
 		CPPUNIT_ASSERT(b == x.begin() );
 	}
@@ -522,6 +537,7 @@ struct TestDeque : CppUnit::TestFixture {
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
+	CPPUNIT_TEST(test_itcon_1);
 	CPPUNIT_TEST(test_constructor_1);
 //	CPPUNIT_TEST(test_constructor_2);
 /*	CPPUNIT_TEST(test_constructor_3);
@@ -554,10 +570,10 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_subscript_1);
 	CPPUNIT_TEST(test_subscript_2);
 	CPPUNIT_TEST(test_subscript_3);
-	CPPUNIT_TEST(test_begin_1);
-	CPPUNIT_TEST(test_begin_2);
-	CPPUNIT_TEST(test_begin_3);
-	CPPUNIT_TEST(test_end_1);
+*/	CPPUNIT_TEST(test_begin_1);
+//	CPPUNIT_TEST(test_begin_2);
+//	CPPUNIT_TEST(test_begin_3);
+/*	CPPUNIT_TEST(test_end_1);
 	CPPUNIT_TEST(test_end_2);
 	CPPUNIT_TEST(test_end_3);
 	CPPUNIT_TEST(test_insert_1);
