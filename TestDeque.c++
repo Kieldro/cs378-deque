@@ -68,7 +68,11 @@ struct TestDeque : CppUnit::TestFixture {
 	void test_constructor_4 () {
 		C x(3, 11);
 		C y(x);
+		CPPUNIT_ASSERT(x[0] == 11);
+		CPPUNIT_ASSERT(x[1] == 11);
+		CPPUNIT_ASSERT(x[2] == 11);
 		CPPUNIT_ASSERT(y.size() == 3);
+		if(DEBUG)cerr << "y[0] = " << y[0] << endl;
 		CPPUNIT_ASSERT(y[0] == 11);
 		CPPUNIT_ASSERT(y[1] == 11);
 		CPPUNIT_ASSERT(y[2] == 11);
@@ -539,11 +543,11 @@ struct TestDeque : CppUnit::TestFixture {
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
-//	CPPUNIT_TEST(test_itcon_1);
-//	CPPUNIT_TEST(test_constructor_1);
-//	CPPUNIT_TEST(test_constructor_2);
+	CPPUNIT_TEST(test_itcon_1);
+	CPPUNIT_TEST(test_constructor_1);
+	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
-//	CPPUNIT_TEST(test_constructor_4);
+	CPPUNIT_TEST(test_constructor_4);
 	CPPUNIT_TEST(test_size_1);
 	CPPUNIT_TEST(test_size_2);
 /*	CPPUNIT_TEST(test_back_1);
@@ -573,7 +577,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_subscript_3);
 */	CPPUNIT_TEST(test_begin_1);
 	CPPUNIT_TEST(test_begin_2);
-//	CPPUNIT_TEST(test_begin_3);
+	CPPUNIT_TEST(test_begin_3);
 /*	CPPUNIT_TEST(test_end_1);
 	CPPUNIT_TEST(test_end_2);
 	CPPUNIT_TEST(test_end_3);

@@ -38,9 +38,12 @@ BI destroy (A& a, BI b, BI e) {
 // uninitialized_copy
 template <typename A, typename II, typename BI>
 BI uninitialized_copy (A& a, II b, II e, BI x) {
+	if(DEBUG)cerr << "uninitialized_copy(): " << endl;
 	BI p = x;
+	assert(b!=e);
 	try {
 		while (b != e) {
+			if(DEBUG)cerr << "*b = " << *b << endl;
 			a.construct(&*x, *b);
 			++b;
 			++x;}}
@@ -58,9 +61,7 @@ BI uninitialized_fill (A& a, BI b, BI e, const U& v) {
 	assert(p == b);
 	try {
 		while (b != e) {
-			if(DEBUG)cerr << "loop !=: " << endl;
 			a.construct(&*b, v);
-			
 			++b;}}
 	catch (...) {
 		destroy(a, p, b);
@@ -149,7 +150,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				friend bool operator == (const iterator& lhs, const iterator& rhs) {
-					return lhs.idx == rhs.idx;
+					return lhs._d == rhs._d && lhs.idx == rhs.idx;
 				}
 
 				/**
@@ -309,7 +310,7 @@ class MyDeque {
 				 */
 				friend bool operator == (const const_iterator& lhs, const const_iterator& rhs) {
 					// <your code>
-					return true;}
+					return lhs._d == rhs._d && lhs.idx == rhs.idx;}
 
 				/**
 				 * <your documentation>
@@ -336,14 +337,15 @@ class MyDeque {
 			private:
 				// ----
 				// data
-				// <your data>
+				const MyDeque* _d;
+				MyDeque::size_type idx;
 
 			private:
 				// -----
 				// valid
 				bool valid () const {
 					// <your code>
-					return (!_begin && !_end && !_back) || (_begin <= _end) && (_end <= _back);}
+					return true;}
 
 			public:
 				// -----------
@@ -351,9 +353,8 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				const_iterator (/* <your arguments> */) {
-					// <your code>
-					assert(valid());}
+				const_iterator (const MyDeque* d, MyDeque::size_type i)
+					: _d(d), idx(i) {assert(valid());}
 
 				// Default copy, destructor, and copy assignment.
 				// const_iterator (const const_iterator&);
@@ -366,10 +367,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				reference operator * () const {
-					// <your code>
-					// dummy is just to be able to compile the skeleton, remove it
-					static value_type dummy;
-					return dummy;}
+					return (*_d)[idx];}
 
 				// -----------
 				// operator ->
@@ -386,7 +384,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				const_iterator& operator ++ () {
-					// <your code>
+					++idx;
 					assert(valid());
 					return *this;}
 
@@ -465,8 +463,12 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		MyDeque (const MyDeque& that) {
-			// <your code>
+		MyDeque (const MyDeque& that) 
+			: _a(that._a) {
+			if(DEBUG)cerr << "MyDeque(MyDeque&): " << that.size() << endl;
+			_front = _begin = _a.allocate(that.size());
+			_end = _back = _begin + that.size();
+			uninitialized_copy(_a, that.begin(), that.end(), begin()); 
 			assert(valid() );
 		}
 
@@ -561,7 +563,7 @@ class MyDeque {
 		 */
 		const_iterator begin () const {
 			// <your code>
-			return const_iterator(/* <your arguments> */);}
+			return const_iterator(this, 0);}
 
 		// -----
 		// clear
@@ -594,7 +596,7 @@ class MyDeque {
 		 */
 		const_iterator end () const {
 			// <your code>
-			return const_iterator(/* <your arguments> */);}
+			return const_iterator(this, size());}
 
 		// -----
 		// erase
