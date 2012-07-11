@@ -114,18 +114,18 @@ class MyDeque {
 		// data
 		allocator_type _a;		// allocator
 		
-		pointer _start;
-		pointer _elements;	// array to hold elements
-		pointer _size;		// pointer to the end of used space
-		pointer _cap;		// pointer to the end of array?
+		pointer _front;
+		pointer _begin;	// array to hold elements
+		pointer _end;		// pointer to the end of used space
+		pointer _back;		// pointer to the end of array?
 
 	private:
 		// -----
 		// valid
 		bool valid () const {
 			
-			return (!_start && !_elements && !_size && !_cap) ||
-				((_start <= _elements) && (_elements <= _size) && (_size <= _cap));
+			return (!_front && !_begin && !_end && !_back) ||
+				((_front <= _begin) && (_begin <= _end) && (_end <= _back));
 		}
 
 	public:
@@ -343,7 +343,7 @@ class MyDeque {
 				// valid
 				bool valid () const {
 					// <your code>
-					return (!_elements && !_size && !_cap) || (_elements <= _size) && (_size <= _cap);}
+					return (!_begin && !_end && !_back) || (_begin <= _end) && (_end <= _back);}
 
 			public:
 				// -----------
@@ -445,7 +445,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-			: _a(a), _start(0), _elements(0), _size(0), _cap(0)
+			: _a(a), _front(0), _begin(0), _end(0), _back(0)
 		{
 			assert(valid() );
 		}
@@ -456,8 +456,8 @@ class MyDeque {
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
 			if(DEBUG)cerr << "MyDeque(): " << s << " " << v << endl;
-			_start = _elements = _a.allocate(s);
-			_size = _cap = _elements + s;
+			_front = _begin = _a.allocate(s);
+			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);
 			assert(valid() );
 		}
@@ -496,7 +496,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference operator [] (size_type index) {
-			pointer r = _elements + index;
+			pointer r = _begin + index;
 			
 			return *r;
 		}
@@ -538,7 +538,7 @@ class MyDeque {
 		reference back () {
 			// <your code>
 			assert(! empty());
-			return *(_size - 1);}
+			return *(_end - 1);}
 
 		/**
 		 * <your documentation>
@@ -682,7 +682,7 @@ class MyDeque {
 		 */
 		size_type size () const {
 			//if(DEBUG)cerr << "size: " << size << endl;
-			return _size - _elements;
+			return _end - _begin;
 		}
 
 		// ----
