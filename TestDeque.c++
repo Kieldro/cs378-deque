@@ -528,9 +528,6 @@ struct TestDeque : CppUnit::TestFixture {
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
-	//CPPUNIT_TEST(test_itcon_1);
-	//CPPUNIT_TEST(test_iterator_equality_1);
-        //CPPUNIT_TEST(test_iterator_equality_2);
 	CPPUNIT_TEST(test_constructor_1);
 	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
