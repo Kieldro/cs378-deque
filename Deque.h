@@ -4,7 +4,7 @@
 // Glenn P. Downing
 #ifndef Deque_h
 #define Deque_h
-#define DEBUG true
+#define DEBUG !true
 
 // --------
 // includes
@@ -53,10 +53,14 @@ BI uninitialized_copy (A& a, II b, II e, BI x) {
 // uninitialized_fill
 template <typename A, typename BI, typename U>
 BI uninitialized_fill (A& a, BI b, BI e, const U& v) {
+	if(DEBUG)cerr << "uninitialized_fill(): " << endl;
 	BI p = b;
+	assert(p == b);
 	try {
 		while (b != e) {
+			if(DEBUG)cerr << "loop !=: " << endl;
 			a.construct(&*b, v);
+			
 			++b;}}
 	catch (...) {
 		destroy(a, p, b);
@@ -145,8 +149,8 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				friend bool operator == (const iterator& lhs, const iterator& rhs) {
-					// <your code>
-					return true;}
+					return lhs.idx == rhs.idx;
+				}
 
 				/**
 				 * <your documentation>
@@ -181,8 +185,8 @@ class MyDeque {
 				// -----
 				// valid
 				bool valid () const {
-					// <your code>
-					return true;}
+					return idx >= 0;
+				}
 
 			public:
 				// -----------
@@ -193,13 +197,17 @@ class MyDeque {
 				iterator (MyDeque* d, MyDeque::size_type i = 0) :
 				_d(d), idx(i)
 				{
+					if(DEBUG)cerr << "iterator(): " << i << endl;
 					assert(valid() );
 				}
 
 				// Default copy, destructor, and copy assignment.
 				// iterator (const iterator&);
 				// ~iterator ();
-				// iterator& operator = (const iterator&);
+				/*iterator& operator = (const iterator&){
+					
+					;
+				}*/
 
 				// ----------
 				// operator *
@@ -207,10 +215,10 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				reference operator * () const {
-					// <your code>
-					// dummy is just to be able to compile the skeleton, remove it
-					static value_type dummy;
-					return dummy;
+					reference r = (*_d)[idx];
+					if(DEBUG)cerr << "it.op*(): " << r << endl;
+					
+					return r;
 				}
 
 				// -----------
@@ -224,12 +232,13 @@ class MyDeque {
 				// -----------
 				// operator ++
 				/**
-				 * <your documentation>
+				 * pre increment
 				 */
 				iterator& operator ++ () {
-					// <your code>
-					assert(valid());
-					return *this;}
+					++idx;
+					assert(valid() );
+					return *this;
+				}
 
 				/**
 				 * <your documentation>
@@ -446,6 +455,7 @@ class MyDeque {
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
+			if(DEBUG)cerr << "MyDeque(): " << s << " " << v << endl;
 			_start = _elements = _a.allocate(s);
 			_size = _cap = _elements + s;
 			uninitialized_fill(_a, begin(), end(), v);
@@ -486,10 +496,10 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference operator [] (size_type index) {
-			// <your code>
-			// dummy is just to be able to compile the skeleton, remove it
-			static value_type dummy;
-			return dummy;}
+			pointer r = _elements + index;
+			
+			return *r;
+		}
 
 		/**
 		 * <your documentation>
@@ -503,7 +513,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference at (size_type index) {
-			// <your code>
 			if (index >= size() )
 				throw std::out_of_range("deque::_M_range_check");
 			
@@ -543,6 +552,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		iterator begin () {
+			if(DEBUG)cerr << "begin(): " << endl;
 			return iterator(this, 0);
 		}
 
@@ -576,8 +586,8 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		iterator end () {
-			// <your code>
-			return iterator(/* <your arguments> */);}
+			if(DEBUG)cerr << "end(): " << endl;
+			return iterator(this, size() );}
 
 		/**
 		 * <your documentation>
