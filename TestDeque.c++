@@ -57,16 +57,6 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(y[2] == 11);
 	}
 	
-	void test_constructor_5 () {
-		int a[] = {3, 7, 11};
-		C x(a, a+3);
-		C y(x);
-		CPPUNIT_ASSERT(y.size() == 3);
-		CPPUNIT_ASSERT(y[0] == 3);
-		CPPUNIT_ASSERT(y[1] == 7);
-		CPPUNIT_ASSERT(y[2] == 11);
-	}
-	
 	// ----
 	// size
 	void test_size_1 () {
@@ -536,7 +526,6 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
 	CPPUNIT_TEST(test_constructor_4);
-	CPPUNIT_TEST(test_constructor_5);
 	CPPUNIT_TEST(test_size_1);
 	CPPUNIT_TEST(test_size_2);
 	CPPUNIT_TEST(test_size_3);
