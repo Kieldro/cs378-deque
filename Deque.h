@@ -562,7 +562,8 @@ class MyDeque {
 		 */
 		const_iterator begin () const {
 			// <your code>
-			return const_iterator(this, 0);}
+			return const_iterator(this, 0);
+		}
 
 		// -----
 		// clear

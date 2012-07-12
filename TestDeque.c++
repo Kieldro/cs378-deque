@@ -287,7 +287,7 @@ struct TestDeque : CppUnit::TestFixture {
 		}
 	}
 	
-	// --
+	// --------
 	// at_const
 	void test_at_const_1 () {
 		const C x(3,11);
@@ -334,7 +334,7 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x[0] == 3);
 	}
 	
-	// ---------
+	// ---------------
 	// const subscript
 	void test_subscript_const_1 () {
 		const C x(3,11);
@@ -604,6 +604,34 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.size() == 3 );
 	}
 	
+	// -----
+	// iterator equality
+	void test_iterator_equality_1 () {
+		C x;
+		typename C::iterator b = x.begin();
+		CPPUNIT_ASSERT(x.begin == b);
+	}
+	
+	void test_iterator_equality_2 () {
+		C x(1000);
+		typename C::iterator b = x.begin();
+		CPPUNIT_ASSERT(x.begin == b);
+	}
+	
+	void test_iterator_equality_3 () {
+		C x(1000, 7);
+		typename C::iterator b = x.begin();
+		CPPUNIT_ASSERT(x.begin == b);
+	}
+	
+	// -----
+	// iterator star
+/*	void test_iterator_equality_1 () {
+		C x;
+		typename C::iterator b = x.begin();
+		CPPUNIT_ASSERT(x.begin == b);
+	}
+*/	
 	// -----
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
