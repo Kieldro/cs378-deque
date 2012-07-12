@@ -674,7 +674,7 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		void push_back (const_reference) {
+		void push_back (const_reference v) {
 			resize(size() + 1, v);
 			assert(valid() );
 		}
