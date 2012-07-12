@@ -116,7 +116,7 @@ class MyDeque {
 		allocator_type _a;		// allocator
 		
 		pointer _front;
-		pointer _begin;	// array to hold elements
+		pointer _begin;		// array to hold elements
 		pointer _end;		// pointer to the end of used space
 		pointer _back;		// pointer to the end of array?
 
@@ -488,18 +488,18 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		MyDeque& operator = (const MyDeque& rhs) {
-			if (this == &that)
+			if (this == &rhs)
 				return *this;
-			if (that.size() == size())
-				std::copy(that.begin(), that.end(), begin());
-			else if (that.size() < size()) {
-				std::copy(that.begin(), that.end(), begin());
-				resize(that.size());
+			if (rhs.size() == size())
+				std::copy(rhs.begin(), rhs.end(), begin());
+			else if (rhs.size() < size()) {
+				std::copy(rhs.begin(), rhs.end(), begin());
+				resize(rhs.size());
 			}	
-			else if (that.size() <= capacity()) {
-				std::copy(that.begin(), that.begin() + size(), begin());
+			else if (rhs.size() <= capacity()) {
+				std::copy(rhs.begin(), rhs.begin() + size(), begin());
 				//FIXME
-				//_end = uninitialized_copy(_a, that.begin() + size(), that.end(), end());
+				//_end = uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end());
 			}
 			else {
 				clear();
@@ -535,8 +535,7 @@ class MyDeque {
 			if (index >= size() )
 				throw std::out_of_range("deque::_M_range_check");
 			
-			static value_type dummy;
-			return dummy;
+			return (*this)[index];
 		}
 
 		/**
@@ -557,13 +556,15 @@ class MyDeque {
 		reference back () {
 			// <your code>
 			assert(! empty());
-			return *(_end - 1);}
+			return *(_end - 1);
+		}
 
 		/**
 		 * <your documentation>
 		 */
 		const_reference back () const {
-			return const_cast<MyDeque*>(this)->back();}
+			return const_cast<MyDeque*>(this)->back();
+		}
 
 		// -----
 		// begin
