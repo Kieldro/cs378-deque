@@ -488,7 +488,24 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		MyDeque& operator = (const MyDeque& rhs) {
-			
+			if (this == &that)
+				return *this;
+			if (that.size() == size())
+				std::copy(that.begin(), that.end(), begin());
+			else if (that.size() < size()) {
+				std::copy(that.begin(), that.end(), begin());
+				resize(that.size());
+			}	
+			else if (that.size() <= capacity()) {
+				std::copy(that.begin(), that.begin() + size(), begin());
+				//FIXME
+				//_end = uninitialized_copy(_a, that.begin() + size(), that.end(), end());
+			}
+			else {
+				clear();
+				MyDeque x(rhs);
+				swap(x);
+			}
 			assert(valid() );
 			return *this;}
 
@@ -571,7 +588,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void clear () {
-			// <your code>
+			resize(0);
 			assert(valid());}
 
 		// -----
