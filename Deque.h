@@ -275,7 +275,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				iterator& operator += (difference_type d) {
-					// <your code>
+					idx += d;
 					assert(valid());
 					return *this;}
 

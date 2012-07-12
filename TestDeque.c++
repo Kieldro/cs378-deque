@@ -478,6 +478,13 @@ struct TestDeque : CppUnit::TestFixture {
 	
 	// ------
 	// resize
+	void test_resize_0 () {
+		C x(3);
+		CPPUNIT_ASSERT(x.size() == 3);
+		x.resize(3);
+		CPPUNIT_ASSERT(x.size() == 3);
+	}
+
 	void test_resize_1 () {
 		C x;
 		CPPUNIT_ASSERT(x.size() == 0);
@@ -693,13 +700,13 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_size_2);
 	CPPUNIT_TEST(test_back_1);
 	CPPUNIT_TEST(test_back_2);
-//	CPPUNIT_TEST(test_back_3);
+	CPPUNIT_TEST(test_back_3);
 	CPPUNIT_TEST(test_back_const_1);
 	CPPUNIT_TEST(test_back_const_2);
 	CPPUNIT_TEST(test_back_const_3);
-//	CPPUNIT_TEST(test_push_back_1);
-//	CPPUNIT_TEST(test_push_back_2);
-//	CPPUNIT_TEST(test_push_back_3);
+	CPPUNIT_TEST(test_push_back_1);
+	CPPUNIT_TEST(test_push_back_2);
+	CPPUNIT_TEST(test_push_back_3);
 	CPPUNIT_TEST(test_front_1);
 	CPPUNIT_TEST(test_front_2);
 //	CPPUNIT_TEST(test_front_3);
@@ -709,22 +716,22 @@ struct TestDeque : CppUnit::TestFixture {
 //	CPPUNIT_TEST(test_push_front_1);
 //	CPPUNIT_TEST(test_push_front_2);
 //	CPPUNIT_TEST(test_push_front_3);
-//	CPPUNIT_TEST(test_pop_back_1);
-//	CPPUNIT_TEST(test_pop_back_2);
-//	CPPUNIT_TEST(test_pop_back_3);
+	CPPUNIT_TEST(test_pop_back_1);
+	CPPUNIT_TEST(test_pop_back_2);
+	CPPUNIT_TEST(test_pop_back_3);
 //	CPPUNIT_TEST(test_pop_front_1);
 //	CPPUNIT_TEST(test_pop_front_2);
 //	CPPUNIT_TEST(test_pop_front_3);
 	CPPUNIT_TEST(test_at_1);
 	CPPUNIT_TEST(test_at_2);
-//	CPPUNIT_TEST(test_at_3);
+	CPPUNIT_TEST(test_at_3);
 	CPPUNIT_TEST(test_at_4);
 	CPPUNIT_TEST(test_at_const_1);
 	CPPUNIT_TEST(test_at_const_2);
 	CPPUNIT_TEST(test_at_const_3);
 	CPPUNIT_TEST(test_subscript_1);
 	CPPUNIT_TEST(test_subscript_2);
-//	CPPUNIT_TEST(test_subscript_3); //segfault
+	CPPUNIT_TEST(test_subscript_3);
 	CPPUNIT_TEST(test_subscript_const_1);
 	CPPUNIT_TEST(test_subscript_const_2);
 	CPPUNIT_TEST(test_subscript_const_3);
@@ -735,8 +742,8 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_begin_const_2);
 	CPPUNIT_TEST(test_begin_const_3);
 	CPPUNIT_TEST(test_end_1);
-//	CPPUNIT_TEST(test_end_2); //fails
-//	CPPUNIT_TEST(test_end_3); //fails
+	CPPUNIT_TEST(test_end_2); 
+	CPPUNIT_TEST(test_end_3);
 	CPPUNIT_TEST(test_end_const_1);
 //	CPPUNIT_TEST(test_end_const_2); // fails
 //	CPPUNIT_TEST(test_end_const_3); // fails
@@ -744,11 +751,12 @@ struct TestDeque : CppUnit::TestFixture {
 //	CPPUNIT_TEST(test_insert_2);
 //	CPPUNIT_TEST(test_insert_3);
 //	CPPUNIT_TEST(test_insert_4);
-//	CPPUNIT_TEST(test_resize_1); // fails
-//	CPPUNIT_TEST(test_resize_2); // fails
-//	CPPUNIT_TEST(test_resize_3); // fails
-//	CPPUNIT_TEST(test_resize_4); // fails
-//	CPPUNIT_TEST(test_resize_5); // fails
+	CPPUNIT_TEST(test_resize_0);
+	CPPUNIT_TEST(test_resize_1); 
+	CPPUNIT_TEST(test_resize_2); 
+	CPPUNIT_TEST(test_resize_3);
+	CPPUNIT_TEST(test_resize_4); 
+	CPPUNIT_TEST(test_resize_5);
 //	CPPUNIT_TEST(test_erase_1);
 //	CPPUNIT_TEST(test_erase_2);
 //	CPPUNIT_TEST(test_erase_3);
@@ -757,7 +765,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_swap_3);
 	CPPUNIT_TEST(test_clear_1);
 	CPPUNIT_TEST(test_clear_2);
-//	CPPUNIT_TEST(test_clear_3);
+	CPPUNIT_TEST(test_clear_3);
 	CPPUNIT_TEST(test_op_equal_1);
 	CPPUNIT_TEST(test_op_equal_2);
 	CPPUNIT_TEST(test_op_equal_3);
