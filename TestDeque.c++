@@ -428,19 +428,19 @@ struct TestDeque : CppUnit::TestFixture {
 	// ---------
 	// end_const
 	void test_end_const_1 () {
-		C x;
+		const C x;
 		typename C::const_iterator e = x.end();
 		CPPUNIT_ASSERT(e == x.begin());
 	}	
 
 	void test_end_const_2 () {
-		C x(5);
+		const C x(5);
 		typename C::const_iterator e = x.end();
 		CPPUNIT_ASSERT(e == x.begin()+5);
 	}
 
 	void test_end_const_3 () {
-		C x(3, 2);
+		const C x(3, 2);
 		typename C::const_iterator e = x.end();
 		CPPUNIT_ASSERT(e != x.begin());
 		CPPUNIT_ASSERT(e == x.begin()+3);
@@ -774,7 +774,7 @@ int main () {
 
 	CppUnit::TextTestRunner tr;
 	tr.addTest(TestDeque<   deque<int> >::suite() );
-	//tr.addTest(TestDeque< MyDeque<int> >::suite() );
+	tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 
 	cout << "Done." << endl;

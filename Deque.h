@@ -606,7 +606,8 @@ class MyDeque {
 		iterator erase (iterator) {
 			// <your code>
 			assert(valid());
-			return iterator();}
+			return iterator(this);
+		}
 
 		// -----
 		// front
@@ -632,8 +633,9 @@ class MyDeque {
 		 */
 		iterator insert (iterator, const_reference) {
 			// <your code>
-			assert(valid());
-			return iterator();}
+			assert(valid() );
+			return iterator(this);
+		}
 
 		// ---
 		// pop
