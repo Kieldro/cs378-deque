@@ -21,6 +21,7 @@ GitHub Repository Name: cs378-deque
 
 Comments:
 UML diagram for method dependencies: http://www.gliffy.com/pubdoc/3730160/L.png
+
 ----------------
 Pair Programming
 ----------------
