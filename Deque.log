@@ -1,0 +1,114 @@
+commit ca976a1a4b7c1e252cc01f1e7ee7f2faa0be7c9b
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Wed Jul 11 17:39:37 2012 -0500
+
+    finished removing iterator tests
+
+commit 8df6b982c037671fdeb69baddba891b3093af7c0
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Wed Jul 11 17:33:01 2012 -0500
+
+    removed iterator tests
+
+commit bf89761ba7b3a2fb1e2f16467101f69fc1b03fae
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Wed Jul 11 17:18:28 2012 -0500
+
+    wrote const iterator and MyDeque(&MyDeque)
+
+commit d44df78d81fabee49007a8406eebe5fd2dbcfcf6
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Wed Jul 11 16:14:05 2012 -0500
+
+    refactored variable names.
+
+commit c33c116ba0a2d9ac7b408beb30dae0d5775c5f31
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Wed Jul 11 16:04:40 2012 -0500
+
+    constructor MyDeque(s, v) working.
+
+commit 239f0fe9ea27055196c182af40775afe88937d58
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Wed Jul 11 15:17:31 2012 -0500
+
+    wrote iterator constructor.
+
+commit 8aa3e293cbbd65eaf750d83cd49a08d8bd207c34
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Wed Jul 11 14:48:47 2012 -0500
+
+    fixed default constructor.
+
+commit c6cbacfefcbe6caa0ec953e08f5e0ba7df5cd72b
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Wed Jul 11 14:35:37 2012 -0500
+
+    removed a constructor unit test.
+
+commit fab7cfa11cc6db5a46652d6db849e7127fcd2031
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Mon Jul 9 11:00:48 2012 -0500
+
+    changed unit tests to not use Deque constructor with iterator parameters.
+
+commit 5b818e6b81287f1ff6c6d89924669c0ce19340cb
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 17:26:39 2012 -0500
+
+    testing commit spam. @pandnp
+
+commit 0c7ff3a1f579b0c06c0f0adabef20c4aab1322cf
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Sat Jul 7 17:22:26 2012 -0500
+
+    implemented constructor and size()
+
+commit d42bdf308d1ccc484a7bffddef2d9833f200a0ee
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 15:01:28 2012 -0500
+
+    Most unit test complete. Default constructor working.
+
+commit 96d81d12a899dd23da735356f34c7be1947de98c
+Merge: 8a07b4a 7003dc5
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 13:14:47 2012 -0500
+
+    Merge branch 'master' of github.com:Kieldro/cs378-deque
+
+commit 8a07b4a04544ee761a15c3bfb95d0a4bd8cd7d4b
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 13:14:42 2012 -0500
+
+    at() throws range exception.
+
+commit 7003dc5a08ca45621e02426f563232ec0fa86765
+Author: Fionnuala Gunter <cs.utexas.edu>
+Date:   Sat Jul 7 13:13:34 2012 -0500
+
+    added front, push_front, pop_back, pop_front, at, subscript tests
+
+commit a5a4d572e144d289d5bc0112bcc0a8160322a765
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 12:15:12 2012 -0500
+
+    more tests.
+
+commit 00d2cb244ce017ad943bf4923ab86153843e4afa
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 7 11:53:43 2012 -0500
+
+    changed some class variable names.
+
+commit 962ba802ff8ee11a1c0f63b145a4508c88e78ee0
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Fri Jul 6 02:38:15 2012 -0500
+
+    added some debug statements and tab indentation.
+
+commit fca32bec6a66cd838145b12728509ac06bd0ffce
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Thu Jul 5 22:37:07 2012 -0500
+
+    First commit.
