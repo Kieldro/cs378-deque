@@ -718,49 +718,49 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_at_1);
 	CPPUNIT_TEST(test_at_2);
 //	CPPUNIT_TEST(test_at_3);
-//	CPPUNIT_TEST(test_at_4);
-//	CPPUNIT_TEST(test_at_const_1);
-//	CPPUNIT_TEST(test_at_const_2);
-//	CPPUNIT_TEST(test_at_const_3);
-//	CPPUNIT_TEST(test_subscript_1);
-//	CPPUNIT_TEST(test_subscript_2);
-//	CPPUNIT_TEST(test_subscript_3);
-//	CPPUNIT_TEST(test_subscript_const_1);
-//	CPPUNIT_TEST(test_subscript_const_2);
-//	CPPUNIT_TEST(test_subscript_const_3);
-//	CPPUNIT_TEST(test_begin_1);
-//	CPPUNIT_TEST(test_begin_2);
-//	CPPUNIT_TEST(test_begin_3);
-//	CPPUNIT_TEST(test_begin_const_1);
-//	CPPUNIT_TEST(test_begin_const_2);
-//	CPPUNIT_TEST(test_begin_const_3);
-//	CPPUNIT_TEST(test_end_1);
-//	CPPUNIT_TEST(test_end_2);
-//	CPPUNIT_TEST(test_end_3);
-//	CPPUNIT_TEST(test_end_const_1);
-//	CPPUNIT_TEST(test_end_const_2);
-//	CPPUNIT_TEST(test_end_const_3);
+	CPPUNIT_TEST(test_at_4);
+	CPPUNIT_TEST(test_at_const_1);
+	CPPUNIT_TEST(test_at_const_2);
+	CPPUNIT_TEST(test_at_const_3);
+	CPPUNIT_TEST(test_subscript_1);
+	CPPUNIT_TEST(test_subscript_2);
+//	CPPUNIT_TEST(test_subscript_3); //segfault
+	CPPUNIT_TEST(test_subscript_const_1);
+	CPPUNIT_TEST(test_subscript_const_2);
+	CPPUNIT_TEST(test_subscript_const_3);
+	CPPUNIT_TEST(test_begin_1);
+	CPPUNIT_TEST(test_begin_2);
+	CPPUNIT_TEST(test_begin_3);
+	CPPUNIT_TEST(test_begin_const_1);
+	CPPUNIT_TEST(test_begin_const_2);
+	CPPUNIT_TEST(test_begin_const_3);
+	CPPUNIT_TEST(test_end_1);
+//	CPPUNIT_TEST(test_end_2); //fails
+//	CPPUNIT_TEST(test_end_3); //fails
+	CPPUNIT_TEST(test_end_const_1);
+//	CPPUNIT_TEST(test_end_const_2); // fails
+//	CPPUNIT_TEST(test_end_const_3); // fails
 //	CPPUNIT_TEST(test_insert_1);
 //	CPPUNIT_TEST(test_insert_2);
 //	CPPUNIT_TEST(test_insert_3);
 //	CPPUNIT_TEST(test_insert_4);
-//	CPPUNIT_TEST(test_resize_1);
-//	CPPUNIT_TEST(test_resize_2);
-//	CPPUNIT_TEST(test_resize_3);
-//	CPPUNIT_TEST(test_resize_4);
-//	CPPUNIT_TEST(test_resize_5);
+//	CPPUNIT_TEST(test_resize_1); // fails
+//	CPPUNIT_TEST(test_resize_2); // fails
+//	CPPUNIT_TEST(test_resize_3); // fails
+//	CPPUNIT_TEST(test_resize_4); // fails
+//	CPPUNIT_TEST(test_resize_5); // fails
 //	CPPUNIT_TEST(test_erase_1);
 //	CPPUNIT_TEST(test_erase_2);
 //	CPPUNIT_TEST(test_erase_3);
-//	CPPUNIT_TEST(test_swap_1);
-//	CPPUNIT_TEST(test_swap_2);
-//	CPPUNIT_TEST(test_swap_3);
-//	CPPUNIT_TEST(test_clear_1);
-//	CPPUNIT_TEST(test_clear_2);
+	CPPUNIT_TEST(test_swap_1);
+	CPPUNIT_TEST(test_swap_2);
+	CPPUNIT_TEST(test_swap_3);
+	CPPUNIT_TEST(test_clear_1);
+	CPPUNIT_TEST(test_clear_2);
 //	CPPUNIT_TEST(test_clear_3);
-//	CPPUNIT_TEST(test_op_equal_1);
-//	CPPUNIT_TEST(test_op_equal_2);
-//	CPPUNIT_TEST(test_op_equal_3);
+	CPPUNIT_TEST(test_op_equal_1);
+	CPPUNIT_TEST(test_op_equal_2);
+	CPPUNIT_TEST(test_op_equal_3);
 	
 	CPPUNIT_TEST_SUITE_END();
 };
