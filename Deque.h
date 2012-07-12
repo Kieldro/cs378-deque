@@ -659,8 +659,10 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void pop_back () {
-			// <your code>
-			assert(valid());}
+			assert(!empty() );
+			resize(size() - 1);
+			assert(valid() );
+		}
 
 		/**
 		 * <your documentation>
@@ -675,7 +677,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void push_back (const_reference) {
-			// <your code>
+			resize(size() + 1, v);
 			assert(valid() );
 		}
 

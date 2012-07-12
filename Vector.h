@@ -188,9 +188,10 @@ class my_vector {
             return const_cast<my_vector&>(*this).front();}
 
         void pop_back () {
-            assert(!empty());
+            assert(!empty() );
             resize(size() - 1);
-            assert(valid());}
+            assert(valid() );
+        }
 
         void push_back (const_reference v) {
             resize(size() + 1, v);
