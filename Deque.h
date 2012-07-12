@@ -498,8 +498,7 @@ class MyDeque {
 			}	
 			else if (rhs.size() <= capacity()) {
 				std::copy(rhs.begin(), rhs.begin() + size(), begin());
-				//FIXME
-				//_end = uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end());
+				_end = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));
 			}
 			else {
 				clear();
@@ -632,10 +631,9 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference front () {
-			// <your code>
-			// dummy is just to be able to compile the skeleton, remove it
-			static value_type dummy;
-			return dummy;}
+			assert(!empty());
+			return *(_begin);
+		}
 
 		/**
 		 * <your documentation>
@@ -695,11 +693,9 @@ class MyDeque {
 			if (s == size())
 				return;
 			if (s < size())
-				;//FIXME
-				//_end = destroy(_a, begin() + s, end());
+				_end = &(*destroy(_a, begin() + s, end()));
 			else if (s <= capacity())
-				;// FIXME
-				//_end = uninitialized_fill(_a, end(), begin() +s, v);
+				_end = &(*uninitialized_fill(_a, end(), begin() +s, v));
 			else {
 				size_type capacity = std::max(s, 2 * size());
 				MyDeque x(capacity);
