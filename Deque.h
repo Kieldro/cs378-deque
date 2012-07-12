@@ -256,7 +256,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				iterator& operator -- () {
-					// <your code>
+					--idx;
 					assert(valid());
 					return *this;}
 
@@ -403,7 +403,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				const_iterator& operator -- () {
-					// <your code>
+					--idx;
 					assert(valid());
 					return *this;}
 
@@ -518,7 +518,8 @@ class MyDeque {
 			if (index >= size() )
 				throw std::out_of_range("deque::_M_range_check");
 			
-			return const_cast<MyDeque*>(this)->at(index);
+			static value_type dummy;
+			return dummy;
 		}
 
 		/**
@@ -562,8 +563,7 @@ class MyDeque {
 		 */
 		const_iterator begin () const {
 			// <your code>
-			return const_iterator(this, 0);
-		}
+			return const_iterator(this, 0);}
 
 		// -----
 		// clear
@@ -606,8 +606,7 @@ class MyDeque {
 		iterator erase (iterator) {
 			// <your code>
 			assert(valid());
-			return iterator(this);
-		}
+			return iterator();}
 
 		// -----
 		// front
@@ -633,9 +632,8 @@ class MyDeque {
 		 */
 		iterator insert (iterator, const_reference) {
 			// <your code>
-			assert(valid() );
-			return iterator(this);
-		}
+			assert(valid());
+			return iterator();}
 
 		// ---
 		// pop
@@ -676,7 +674,17 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void resize (size_type s, const_reference v = value_type()) {
-			// <your code>
+			if (s == size())
+				return;
+			if (s < size())
+				_end = destroy(_a, begin() + s, end());
+			else if (s <= capacity())
+				_end = uninitialized_fill(_a, end(), begin() +s, v);
+			else {
+				MyDeque x(*this, s);
+				swap(x);
+				resize(s, v);
+			}
 			assert(valid());}
 
 		// ----
@@ -694,9 +702,29 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		void swap (MyDeque&) {
-			// <your code>
+		void swap (MyDeque& that) {
+			if (_a == that._a) {
+				std::swap(_front, that._front);
+				std::swap(_begin, that._begin);
+				std::swap(_end, that._end);
+				std::swap(_back, that._back);
+			}
+			else {
+				MyDeque x(*this);
+				*this = that;
+				that = x;
+			}
 			assert(valid());
+		}
+
+	private:
+		// --------
+		// capacity
+		/**
+		 * returns the capacity of this deque
+		 */
+		size_type capacity() const{
+			return _back - _front;
 		}
 };
 #endif // Deque_h
