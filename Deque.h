@@ -488,7 +488,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		MyDeque& operator = (const MyDeque& rhs) {
-			// <your code>
+			
 			assert(valid() );
 			return *this;}
 
@@ -606,7 +606,7 @@ class MyDeque {
 		iterator erase (iterator) {
 			// <your code>
 			assert(valid());
-			return iterator();}
+			return iterator(this);}
 
 		// -----
 		// front
@@ -633,7 +633,7 @@ class MyDeque {
 		iterator insert (iterator, const_reference) {
 			// <your code>
 			assert(valid());
-			return iterator();}
+			return iterator(this);}
 
 		// ---
 		// pop
@@ -677,11 +677,15 @@ class MyDeque {
 			if (s == size())
 				return;
 			if (s < size())
-				_end = destroy(_a, begin() + s, end());
+				;//FIXME
+				//_end = destroy(_a, begin() + s, end());
 			else if (s <= capacity())
-				_end = uninitialized_fill(_a, end(), begin() +s, v);
+				;// FIXME
+				//_end = uninitialized_fill(_a, end(), begin() +s, v);
 			else {
-				MyDeque x(*this, s);
+				size_type capacity = std::max(s, 2 * size());
+				MyDeque x(capacity);
+				x = *this;
 				swap(x);
 				resize(s, v);
 			}
