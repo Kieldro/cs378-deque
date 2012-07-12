@@ -326,20 +326,48 @@ struct TestDeque : CppUnit::TestFixture {
 		C x(3, 2);
 		typename C::iterator b = x.begin();
 		CPPUNIT_ASSERT(*b == 2);
+		++b;
+		CPPUNIT_ASSERT(*b == 2);
+		++b;
+		CPPUNIT_ASSERT(*b == 2);
+	}
+
+	// -----------
+	// begin_const
+	void test_begin_const_1 () {
+		const C x;
+		typename C::const_iterator b = x.begin();
+		CPPUNIT_ASSERT(b == x.begin());
+	}
+
+	void test_begin_const_2 () {
+		const C x(5);
+		typename C::const_iterator b = x.begin();
+		CPPUNIT_ASSERT(b == x.begin());
+	}
+
+	void test_begin_const_3 () {
+		const C x(3, 2);
+		typename C::const_iterator b = x.begin();
+		CPPUNIT_ASSERT(*b == 2);
+		++b;
+		CPPUNIT_ASSERT(*b == 2);
+		++b;
+		CPPUNIT_ASSERT(*b == 2);
 	}
 	
 	// ---
 	// end
 	void test_end_1 () {
-		C x(5);
-		typename C::iterator e = x.end();
-		CPPUNIT_ASSERT(e == x.begin()+5 );
+		C x;
+                typename C::iterator e = x.end();
+                CPPUNIT_ASSERT(e == x.begin() );
 	}
 	
 	void test_end_2 () {
-		C x;
-		typename C::iterator e = x.end();
-		CPPUNIT_ASSERT(e == x.begin() );
+ 		C x(5);
+                typename C::iterator e = x.end();
+                CPPUNIT_ASSERT(e == x.begin()+5 );
 	}
 	
 	void test_end_3 () {
@@ -347,6 +375,27 @@ struct TestDeque : CppUnit::TestFixture {
 		typename C::iterator e = x.end();
 		CPPUNIT_ASSERT(e != x.begin() );
 		CPPUNIT_ASSERT(e == x.begin()+3 );
+	}
+
+	// ---------
+	// end_const
+	void test_end_const_1 () {
+		C x;
+		typename C::const_iterator e = x.end();
+		CPPUNIT_ASSERT(e == x.begin());
+	}	
+
+	void test_end_const_2 () {
+		C x(5);
+		typename C::const_iterator e = x.end();
+		CPPUNIT_ASSERT(e == x.begin()+5);
+	}
+
+	void test_end_const_3 () {
+		C x(3, 2);
+		typename C::const_iterator e = x.end();
+		CPPUNIT_ASSERT(e != x.begin());
+		CPPUNIT_ASSERT(e == x.begin()+3);
 	}
 	
 	// ------
@@ -600,9 +649,15 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_begin_1);
 	CPPUNIT_TEST(test_begin_2);
 	CPPUNIT_TEST(test_begin_3);
+	CPPUNIT_TEST(test_begin_const_1);
+	CPPUNIT_TEST(test_begin_const_2);
+	CPPUNIT_TEST(test_begin_const_3);
 	CPPUNIT_TEST(test_end_1);
 	CPPUNIT_TEST(test_end_2);
 	CPPUNIT_TEST(test_end_3);
+	CPPUNIT_TEST(test_end_const_1);
+	CPPUNIT_TEST(test_end_const_2);
+	CPPUNIT_TEST(test_end_const_3);
 	CPPUNIT_TEST(test_insert_1);
 	CPPUNIT_TEST(test_insert_2);
 	CPPUNIT_TEST(test_insert_3);
