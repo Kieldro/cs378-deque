@@ -287,6 +287,32 @@ struct TestDeque : CppUnit::TestFixture {
 		}
 	}
 	
+	// --
+	// at_const
+	void test_at_const_1 () {
+		const C x(3,11);
+		CPPUNIT_ASSERT(x.at(0) == 11);
+		CPPUNIT_ASSERT(x.at(1) == 11);
+		CPPUNIT_ASSERT(x.at(2) == 11);
+	}
+	
+	void test_at_const_2 () {
+		const C x(2,3);
+		CPPUNIT_ASSERT(x.at(0) == 3);
+		CPPUNIT_ASSERT(x.at(1) == 3);
+	}
+	
+	void test_at_const_3 () {
+		const C x;
+		try {
+			x.at(0);
+			CPPUNIT_ASSERT(false);
+		}
+		catch (std::out_of_range e) {
+			CPPUNIT_ASSERT(true);
+		}
+	}
+	
 	// ---------
 	// subscript
 	void test_subscript_1 () {
@@ -306,6 +332,28 @@ struct TestDeque : CppUnit::TestFixture {
 		C x;
 		x.push_back(3);
 		CPPUNIT_ASSERT(x[0] == 3);
+	}
+	
+	// ---------
+	// const subscript
+	void test_subscript_const_1 () {
+		const C x(3,11);
+		CPPUNIT_ASSERT(x[0] == 11);
+		CPPUNIT_ASSERT(x[1] == 11);
+		CPPUNIT_ASSERT(x[2] == 11);
+	}
+	
+	void test_subscript_const_2 () {
+		const C x(2,3);
+		CPPUNIT_ASSERT(x[0] == 3);
+		CPPUNIT_ASSERT(x[1] == 3);
+	}
+	
+	void test_subscript_const_3 () {
+		const C x(1000);
+		CPPUNIT_ASSERT(x[0] == 0);
+		CPPUNIT_ASSERT(x[500] == 0);
+		CPPUNIT_ASSERT(x[x.size()-1] == 0);
 	}
 	
 	// -----
@@ -570,8 +618,8 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_back_2);
 	CPPUNIT_TEST(test_back_3);
 	CPPUNIT_TEST(test_back_const_1);
-        CPPUNIT_TEST(test_back_const_2);
-        CPPUNIT_TEST(test_back_const_3);
+	CPPUNIT_TEST(test_back_const_2);
+	CPPUNIT_TEST(test_back_const_3);
 	CPPUNIT_TEST(test_push_back_1);
 	CPPUNIT_TEST(test_push_back_2);
 	CPPUNIT_TEST(test_push_back_3);
@@ -579,8 +627,8 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_front_2);
 	CPPUNIT_TEST(test_front_3);
 	CPPUNIT_TEST(test_front_const_1);
-        CPPUNIT_TEST(test_front_const_2);
-        CPPUNIT_TEST(test_front_const_3);
+	CPPUNIT_TEST(test_front_const_2);
+	CPPUNIT_TEST(test_front_const_3);
 	CPPUNIT_TEST(test_push_front_1);
 	CPPUNIT_TEST(test_push_front_2);
 	CPPUNIT_TEST(test_push_front_3);
@@ -594,9 +642,15 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_at_2);
 	CPPUNIT_TEST(test_at_3);
 	CPPUNIT_TEST(test_at_4);
+	CPPUNIT_TEST(test_at_const_1);
+	CPPUNIT_TEST(test_at_const_2);
+	CPPUNIT_TEST(test_at_const_3);
 	CPPUNIT_TEST(test_subscript_1);
 	CPPUNIT_TEST(test_subscript_2);
 	CPPUNIT_TEST(test_subscript_3);
+	CPPUNIT_TEST(test_subscript_const_1);
+	CPPUNIT_TEST(test_subscript_const_2);
+	CPPUNIT_TEST(test_subscript_const_3);
 	CPPUNIT_TEST(test_begin_1);
 	CPPUNIT_TEST(test_begin_2);
 	CPPUNIT_TEST(test_begin_3);

@@ -518,8 +518,7 @@ class MyDeque {
 			if (index >= size() )
 				throw std::out_of_range("deque::_M_range_check");
 			
-			static value_type dummy;
-			return dummy;
+			return const_cast<MyDeque*>(this)->at(index);
 		}
 
 		/**
