@@ -344,8 +344,8 @@ class MyDeque {
 				// -----
 				// valid
 				bool valid () const {
-					// <your code>
-					return true;}
+					return idx >= 0;
+				}
 
 			public:
 				// -----------
@@ -421,10 +421,11 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				const_iterator& operator += (difference_type) {
-					// <your code>
+				const_iterator& operator += (difference_type d) {
+					idx += d;
 					assert(valid());
-					return *this;}
+					return *this;
+				}
 
 				// -----------
 				// operator -=
@@ -612,8 +613,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		const_iterator end () const {
-			// <your code>
-			return const_iterator(this, size());}
+			return const_iterator(this, size() );}
 
 		// -----
 		// erase
@@ -696,7 +696,7 @@ class MyDeque {
 				return;
 			if (s < size())
 				_end = &(*destroy(_a, begin() + s, end()));
-			else if (s <= capacity())
+			else if (s <= capacity() )
 				_end = &(*uninitialized_fill(_a, end(), begin() +s, v));
 			else {
 				size_type capacity = std::max(s, 2 * size());
@@ -734,7 +734,7 @@ class MyDeque {
 				*this = that;
 				that = x;
 			}
-			assert(valid());
+			assert(valid() );
 		}
 
 	private:
