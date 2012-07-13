@@ -408,14 +408,14 @@ struct TestDeque : CppUnit::TestFixture {
 	// end
 	void test_end_1 () {
 		C x;
-                typename C::iterator e = x.end();
-                CPPUNIT_ASSERT(e == x.begin() );
+		typename C::iterator e = x.end();
+		CPPUNIT_ASSERT(e == x.begin() );
 	}
 	
 	void test_end_2 () {
  		C x(5);
-                typename C::iterator e = x.end();
-                CPPUNIT_ASSERT(e == x.begin()+5 );
+		typename C::iterator e = x.end();
+		CPPUNIT_ASSERT(e == x.begin()+5 );
 	}
 	
 	void test_end_3 () {
@@ -464,7 +464,7 @@ struct TestDeque : CppUnit::TestFixture {
 	
 	void test_insert_3 () {
 		C x(3,11);
-		x.insert(x.begin()+3, 13);
+		x.insert(x.end(), 13);
 		CPPUNIT_ASSERT(x[3] == 13);
 		CPPUNIT_ASSERT(x.size() == 4);
 	}
@@ -747,10 +747,10 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_end_const_1);
 	CPPUNIT_TEST(test_end_const_2);
 	CPPUNIT_TEST(test_end_const_3);
-//	CPPUNIT_TEST(test_insert_1);
-//	CPPUNIT_TEST(test_insert_2);
-//	CPPUNIT_TEST(test_insert_3);
-//	CPPUNIT_TEST(test_insert_4);
+	CPPUNIT_TEST(test_insert_1);
+	CPPUNIT_TEST(test_insert_2);
+	CPPUNIT_TEST(test_insert_3);
+	CPPUNIT_TEST(test_insert_4);
 	CPPUNIT_TEST(test_resize_0);
 	CPPUNIT_TEST(test_resize_1); 
 	CPPUNIT_TEST(test_resize_2); 

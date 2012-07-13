@@ -554,7 +554,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference back () {
-			// <your code>
 			assert(! empty());
 			return *(_end - 1);
 		}
@@ -631,7 +630,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		reference front () {
-			assert(!empty());
+			assert(!empty() );
 			return *(_begin);
 		}
 
@@ -646,10 +645,17 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		iterator insert (iterator, const_reference) {
-			// <your code>
-			assert(valid());
-			return iterator(this);}
+		iterator insert (iterator it, const_reference v) {
+			if(it == end() )
+				push_back(v);
+			else {
+				resize(size()+1);
+				std::copy(it, end(), it+1);
+				*it = v;
+			}
+			assert(valid() );
+			return iterator(this);
+		}
 
 		// ---
 		// pop
@@ -682,7 +688,7 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		void push_front (const_reference) {
+		void push_front (const_reference v) {
 			// <your code>
 			assert(valid());}
 
@@ -692,13 +698,13 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void resize (size_type s, const_reference v = value_type()) {
-			if (s == size())
+			if (s == size() )
 				return;
-			if (s < size())
+			if (s < size() )
 				_end = &(*destroy(_a, begin() + s, end()));
 			else if (s <= capacity() )
 				_end = &(*uninitialized_fill(_a, end(), begin() +s, v));
-			else {
+			else {		// allocate more capacity
 				size_type capacity = std::max(s, 2 * size());
 				MyDeque x(capacity);
 				x = *this;
