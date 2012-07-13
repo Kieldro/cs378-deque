@@ -41,9 +41,8 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_constructor_3 () {
-		if(DEBUG)cerr << "test_constructor_3: " << endl;
 		C x(3, 11);
-		if(DEBUG)cerr << "x: " << x[0] << endl;
+		//if(DEBUG)cerr << "x: " << x[0] << endl;
 		CPPUNIT_ASSERT(x.size() == 3);
 		CPPUNIT_ASSERT(x[0] == 11);
 		CPPUNIT_ASSERT(x[1] == 11);
@@ -57,7 +56,6 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x[1] == 11);
 		CPPUNIT_ASSERT(x[2] == 11);
 		CPPUNIT_ASSERT(y.size() == 3);
-		if(DEBUG)cerr << "y[0] = " << y[0] << endl;
 		CPPUNIT_ASSERT(y[0] == 11);
 		CPPUNIT_ASSERT(y[1] == 11);
 		CPPUNIT_ASSERT(y[2] == 11);
@@ -231,14 +229,10 @@ struct TestDeque : CppUnit::TestFixture {
 	// ---------
 	// pop_front
 	void test_pop_front_1 () {
-		C x(3,11);
-		x.pop_front();
-		CPPUNIT_ASSERT(x.size() == 2);
-		CPPUNIT_ASSERT(x.front() == 11);
-		x.pop_front();
+		C x(1);
 		CPPUNIT_ASSERT(x.size() == 1);
-		CPPUNIT_ASSERT(x.front() == 11);
 		x.pop_front();
+		CPPUNIT_ASSERT(x.size() != 1);
 		CPPUNIT_ASSERT(x.size() == 0);
 	}
 	
@@ -250,7 +244,13 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	void test_pop_front_3 () {
-		C x(1);
+		C x(3,11);
+		x.pop_front();
+		CPPUNIT_ASSERT(x.size() == 2);
+		CPPUNIT_ASSERT(x.front() == 11);
+		x.pop_front();
+		CPPUNIT_ASSERT(x.size() == 1);
+		CPPUNIT_ASSERT(x.front() == 11);
 		x.pop_front();
 		CPPUNIT_ASSERT(x.size() == 0);
 	}
@@ -719,9 +719,9 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_pop_back_1);
 	CPPUNIT_TEST(test_pop_back_2);
 	CPPUNIT_TEST(test_pop_back_3);
-//	CPPUNIT_TEST(test_pop_front_1);
-//	CPPUNIT_TEST(test_pop_front_2);
-//	CPPUNIT_TEST(test_pop_front_3);
+	CPPUNIT_TEST(test_pop_front_1);
+	CPPUNIT_TEST(test_pop_front_2);
+	CPPUNIT_TEST(test_pop_front_3);
 	CPPUNIT_TEST(test_at_1);
 	CPPUNIT_TEST(test_at_2);
 	CPPUNIT_TEST(test_at_3);
@@ -781,7 +781,7 @@ int main () {
 	cout << "TestDeque.c++" << endl << endl;
 
 	CppUnit::TextTestRunner tr;
-	tr.addTest(TestDeque<   deque<int> >::suite() );
+//	tr.addTest(TestDeque<   deque<int> >::suite() );
 	tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 

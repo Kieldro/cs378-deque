@@ -454,7 +454,6 @@ class MyDeque {
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
-			if(DEBUG)cerr << "MyDeque(): " << s << " " << v << endl;
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);
@@ -466,7 +465,6 @@ class MyDeque {
 		 */
 		MyDeque (const MyDeque& that) 
 			: _a(that._a) {
-			if(DEBUG)cerr << "MyDeque(MyDeque&): " << that.size() << endl;
 			_front = _begin = _a.allocate(that.size());
 			_end = _back = _begin + that.size();
 			uninitialized_copy(_a, that.begin(), that.end(), begin()); 
@@ -479,7 +477,8 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		~MyDeque () {
-			// <your code>
+			if(DEBUG)cerr << "~MyDeque(): " << size() << endl;
+			
 			assert(valid() );
 		}
 
@@ -678,8 +677,11 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void pop_front () {
-			// <your code>
-			assert(valid());}
+			destroy(_a, begin(), begin()+1);
+			++_begin;
+			
+			assert(valid() );
+		}
 
 		// ----
 		// push
@@ -707,17 +709,18 @@ class MyDeque {
 			if (s == size() )
 				return;
 			if (s < size() )
-				_end = &(*destroy(_a, begin() + s, end()));
+				_end = &*destroy(_a, begin() + s, end() );
 			else if (s <= capacity() )
-				_end = &(*uninitialized_fill(_a, end(), begin() +s, v));
+				_end = &*uninitialized_fill(_a, end(), begin() +s, v);
 			else {		// allocate more capacity
-				size_type capacity = std::max(s, 2 * size());
+				size_type capacity = std::max(s, 2 * size() );
 				MyDeque x(capacity);
 				x = *this;
 				swap(x);
 				resize(s, v);
 			}
-			assert(valid());}
+			assert(valid() );
+		}
 
 		// ----
 		// size
@@ -725,7 +728,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		size_type size () const {
-			//if(DEBUG)cerr << "size: " << size << endl;
 			return _end - _begin;
 		}
 
