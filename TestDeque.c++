@@ -178,13 +178,21 @@ struct TestDeque : CppUnit::TestFixture {
 	// ----------
 	// push_front
 	void test_push_front_1 () {
+		C x(3);
+		x.push_back(7);
+		x.push_front(11);
+		CPPUNIT_ASSERT(x.size() == 5);
+		CPPUNIT_ASSERT(x.front() == 11);
+	}
+	
+	void test_push_front_2 () {
 		C x;
 		x.push_front(4);
 		CPPUNIT_ASSERT(x.size() == 1);
 		CPPUNIT_ASSERT(x.front() == 4);
 	}
 
-	void test_push_front_2 () {
+	void test_push_front_3 () {
 		C x;
 		x.push_front(4);
 		x.push_front(7);
@@ -192,7 +200,7 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.front() == 7);
 	}
 
-	void test_push_front_3 () {
+	void test_push_front_4 () {
 		C x(1);
 		x.push_front(4);
 		CPPUNIT_ASSERT(x.size() == 2);
@@ -713,9 +721,10 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_front_const_1);
 	CPPUNIT_TEST(test_front_const_2);
 	CPPUNIT_TEST(test_front_const_3);
-//	CPPUNIT_TEST(test_push_front_1);
+	CPPUNIT_TEST(test_push_front_1);
 //	CPPUNIT_TEST(test_push_front_2);
 //	CPPUNIT_TEST(test_push_front_3);
+//	CPPUNIT_TEST(test_push_front_4);
 	CPPUNIT_TEST(test_pop_back_1);
 	CPPUNIT_TEST(test_pop_back_2);
 	CPPUNIT_TEST(test_pop_back_3);

@@ -4,7 +4,7 @@
 // Glenn P. Downing
 #ifndef Deque_h
 #define Deque_h
-#define DEBUG !true
+#define DEBUG true
 
 // --------
 // includes
@@ -38,12 +38,11 @@ BI destroy (A& a, BI b, BI e) {
 // uninitialized_copy
 template <typename A, typename II, typename BI>
 BI uninitialized_copy (A& a, II b, II e, BI x) {
-	if(DEBUG)cerr << "uninitialized_copy(): " << endl;
+	//if(DEBUG)cerr << "uninitialized_copy(): " << endl;
 	BI p = x;
 	assert(b!=e);
 	try {
 		while (b != e) {
-			if(DEBUG)cerr << "*b = " << *b << endl;
 			a.construct(&*x, *b);
 			++b;
 			++x;}}
@@ -56,7 +55,7 @@ BI uninitialized_copy (A& a, II b, II e, BI x) {
 // uninitialized_fill
 template <typename A, typename BI, typename U>
 BI uninitialized_fill (A& a, BI b, BI e, const U& v) {
-	if(DEBUG)cerr << "uninitialized_fill(): " << endl;
+	//if(DEBUG)cerr << "uninitialized_fill(): " << endl;
 	BI p = b;
 	assert(p == b);
 	try {
@@ -198,7 +197,6 @@ class MyDeque {
 				iterator (MyDeque* d, MyDeque::size_type i = 0) :
 				_d(d), idx(i)
 				{
-					if(DEBUG)cerr << "iterator(): " << i << endl;
 					assert(valid() );
 				}
 
@@ -217,7 +215,6 @@ class MyDeque {
 				 */
 				reference operator * () const {
 					reference r = (*_d)[idx];
-					if(DEBUG)cerr << "it.op*(): " << r << endl;
 					
 					return r;
 				}
@@ -477,7 +474,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		~MyDeque () {
-			if(DEBUG)cerr << "~MyDeque(): " << size() << endl;
+			//if(DEBUG)cerr << "~MyDeque(): " << size() << endl;
 			
 			assert(valid() );
 		}
@@ -570,7 +567,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		iterator begin () {
-			if(DEBUG)cerr << "begin(): " << endl;
 			return iterator(this, 0);
 		}
 
@@ -603,7 +599,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		iterator end () {
-			if(DEBUG)cerr << "end(): " << endl;
 			return iterator(this, size() );}
 
 		/**
@@ -697,8 +692,16 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void push_front (const_reference v) {
-			// <your code>
-			assert(valid());}
+			//resize(size() + 1);
+			if(_front != _begin){		// if front has capacity
+				if(DEBUG)cerr << "front != begin: " << 0 << endl;
+				--_begin;
+				_a.construct(&*begin(), v);
+			}
+			
+			
+			assert(valid() );
+		}
 
 		// ------
 		// resize
@@ -711,7 +714,7 @@ class MyDeque {
 			if (s < size() )
 				_end = &*destroy(_a, begin() + s, end() );
 			else if (s <= capacity() )
-				_end = &*uninitialized_fill(_a, end(), begin() +s, v);
+				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
 			else {		// allocate more capacity
 				size_type capacity = std::max(s, 2 * size() );
 				MyDeque x(capacity);
