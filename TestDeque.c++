@@ -757,9 +757,9 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_resize_3);
 	CPPUNIT_TEST(test_resize_4); 
 	CPPUNIT_TEST(test_resize_5);
-//	CPPUNIT_TEST(test_erase_1);
-//	CPPUNIT_TEST(test_erase_2);
-//	CPPUNIT_TEST(test_erase_3);
+	CPPUNIT_TEST(test_erase_1);
+	CPPUNIT_TEST(test_erase_2);
+	CPPUNIT_TEST(test_erase_3);
 	CPPUNIT_TEST(test_swap_1);
 	CPPUNIT_TEST(test_swap_2);
 	CPPUNIT_TEST(test_swap_3);

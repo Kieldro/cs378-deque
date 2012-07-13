@@ -579,7 +579,6 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		const_iterator begin () const {
-			// <your code>
 			return const_iterator(this, 0);}
 
 		// -----
@@ -619,10 +618,17 @@ class MyDeque {
 		/**
 		 * <your documentation>
 		 */
-		iterator erase (iterator) {
-			// <your code>
-			assert(valid());
-			return iterator(this);}
+		iterator erase (iterator it) {
+			if(it == end() )
+				pop_back();
+			else {
+				std::copy(it+1, end(), it);
+				resize(size()-1);
+			}
+			
+			assert(valid() );
+			return iterator(this);
+		}
 
 		// -----
 		// front
