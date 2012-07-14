@@ -138,7 +138,7 @@ class MyDeque {
 				typedef typename MyDeque::difference_type difference_type;
 				typedef typename MyDeque::pointer		 pointer;
 				typedef typename MyDeque::reference	   reference;
-				//using MyDeque::size_type;
+				typedef typename MyDeque::size_type size_type;
 
 			public:
 				// -----------
@@ -176,7 +176,7 @@ class MyDeque {
 				// ----
 				// data
 				MyDeque* _d;
-				MyDeque::size_type idx;
+				size_type idx;
 				
 
 			private:
@@ -192,7 +192,7 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				iterator (MyDeque* d, MyDeque::size_type i = 0) :
+				iterator (MyDeque* d, size_type i = 0) :
 				_d(d), idx(i)
 				{
 					assert(valid() );
@@ -296,6 +296,7 @@ class MyDeque {
 				typedef typename MyDeque::difference_type difference_type;
 				typedef typename MyDeque::const_pointer   pointer;
 				typedef typename MyDeque::const_reference reference;
+				typedef typename MyDeque::size_type size_type;
 
 			public:
 				// -----------
@@ -304,7 +305,6 @@ class MyDeque {
 				 * Returns whether two iterators are equal
 				 */
 				friend bool operator == (const const_iterator& lhs, const const_iterator& rhs) {
-					// <your code>
 					return lhs._d == rhs._d && lhs.idx == rhs.idx;}
 
 				/**
@@ -333,7 +333,7 @@ class MyDeque {
 				// ----
 				// data
 				const MyDeque* _d;
-				MyDeque::size_type idx;
+				size_type idx;
 
 			private:
 				// -----
@@ -348,7 +348,7 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				const_iterator (const MyDeque* d, MyDeque::size_type i)
+				const_iterator (const MyDeque* d, size_type i)
 					: _d(d), idx(i) {assert(valid());}
 
 				// Default copy, destructor, and copy assignment.
@@ -374,7 +374,6 @@ class MyDeque {
 
 				// -----------
 				// operator ++
-
 				/**
 				 * Steps forward (returns new position)
 				 */
