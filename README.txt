@@ -6,14 +6,14 @@ Last Name: Buitrago
 EID: ib
 E-mail: kieldro@gmail.com
 Estimated number of hours: 25
-Actual    number of hours: 14
+Actual    number of hours: 18
 
 Partner First Name: Fionnuala
 Partner Last Name: Gunter
 Partner EID: fg3474
 Partner E-mail: fionnuala.gunter@gmail.com
 Partner Estimated number of hours: 25
-Partner Actual    number of hours: 14
+Partner Actual    number of hours: 18
 
 Turnin CS Username: keo
 GitHub ID: Kieldro
