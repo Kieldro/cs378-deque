@@ -146,14 +146,14 @@ class MyDeque {
 				// -----------
 				// operator ==
 				/**
-				 * <your documentation>
+				 * Returns whether two iterators are equal
 				 */
 				friend bool operator == (const iterator& lhs, const iterator& rhs) {
 					return lhs._d == rhs._d && lhs.idx == rhs.idx;
 				}
 
 				/**
-				 * <your documentation>
+				 * Returns whether two iterators are not equal
 				 */
 				friend bool operator != (const iterator& lhs, const iterator& rhs) {
 					return !(lhs == rhs);}
@@ -161,18 +161,18 @@ class MyDeque {
 				// ----------
 				// operator +
 				/**
-				 * <your documentation>
+				 * Returns the iterator of the nth next element
 				 */
-				friend iterator operator + (iterator lhs, difference_type rhs) {
-					return lhs += rhs;}
+				friend iterator operator + (iterator lhs, difference_type n) {
+					return lhs += n;}
 
 				// ----------
 				// operator -
 				/**
-				 * <your documentation>
+				 * Returns the iterator of the nth previous element
 				 */
-				friend iterator operator - (iterator lhs, difference_type rhs) {
-					return lhs -= rhs;}
+				friend iterator operator - (iterator lhs, difference_type n) {
+					return lhs -= n;}
 
 			private:
 				// ----
@@ -211,7 +211,7 @@ class MyDeque {
 				// ----------
 				// operator *
 				/**
-				 * <your documentation>
+				 * Provides access to the actual element
 				 */
 				reference operator * () const {
 					reference r = (*_d)[idx];
@@ -222,7 +222,7 @@ class MyDeque {
 				// -----------
 				// operator ->
 				/**
-				 * <your documentation>
+				 * Provides access to a member of the actual element
 				 */
 				pointer operator -> () const {
 					return &**this;}
@@ -230,7 +230,7 @@ class MyDeque {
 				// -----------
 				// operator ++
 				/**
-				 * pre increment
+				 * Steps forward (returns new position)
 				 */
 				iterator& operator ++ () {
 					++idx;
@@ -239,7 +239,7 @@ class MyDeque {
 				}
 
 				/**
-				 * <your documentation>
+				 * Steps forward (returns old position)
 				 */
 				iterator operator ++ (int) {
 					iterator x = *this;
@@ -250,7 +250,7 @@ class MyDeque {
 				// -----------
 				// operator --
 				/**
-				 * <your documentation>
+				 * Steps backward (returns new position)
 				 */
 				iterator& operator -- () {
 					--idx;
@@ -258,7 +258,7 @@ class MyDeque {
 					return *this;}
 
 				/**
-				 * <your documentation>
+				 * Steps backward (returns old position)
 				 */
 				iterator operator -- (int) {
 					iterator x = *this;
@@ -269,20 +269,20 @@ class MyDeque {
 				// -----------
 				// operator +=
 				/**
-				 * <your documentation>
+				 * Steps n elements forward (or backward, if n is negative)
 				 */
-				iterator& operator += (difference_type d) {
-					idx += d;
+				iterator& operator += (difference_type n) {
+					idx += n;
 					assert(valid());
 					return *this;}
 
 				// -----------
 				// operator -=
 				/**
-				 * <your documentation>
+				 * Steps n elements backward (or forward, if n is negative)
 				 */
-				iterator& operator -= (difference_type d) {
-					idx -= d;
+				iterator& operator -= (difference_type n) {
+					idx -= n;
 					assert(valid());
 					return *this;}};
 
@@ -303,14 +303,14 @@ class MyDeque {
 				// -----------
 				// operator ==
 				/**
-				 * <your documentation>
+				 * Returns whether two iterators are equal
 				 */
 				friend bool operator == (const const_iterator& lhs, const const_iterator& rhs) {
 					// <your code>
 					return lhs._d == rhs._d && lhs.idx == rhs.idx;}
 
 				/**
-				 * <your documentation>
+				 * Returns whether two iterators are not equal
 				 */
 				friend bool operator != (const const_iterator& lhs, const const_iterator& rhs) {
 					return !(lhs == rhs);}
@@ -318,18 +318,18 @@ class MyDeque {
 				// ----------
 				// operator +
 				/**
-				 * <your documentation>
+				 * Returns the iterator of the nth next element
 				 */
-				friend const_iterator operator + (const_iterator lhs, difference_type rhs) {
-					return lhs += rhs;}
+				friend const_iterator operator + (const_iterator lhs, difference_type n) {
+					return lhs += n;}
 
 				// ----------
 				// operator -
 				/**
-				 * <your documentation>
+				 * Returns the iterator of the nth previous element
 				 */
-				friend const_iterator operator - (const_iterator lhs, difference_type rhs) {
-					return lhs -= rhs;}
+				friend const_iterator operator - (const_iterator lhs, difference_type n) {
+					return lhs -= n;}
 
 			private:
 				// ----
@@ -361,7 +361,7 @@ class MyDeque {
 				// ----------
 				// operator *
 				/**
-				 * <your documentation>
+				 * Provides access to the actual element
 				 */
 				reference operator * () const {
 					return (*_d)[idx];}
@@ -369,7 +369,7 @@ class MyDeque {
 				// -----------
 				// operator ->
 				/**
-				 * <your documentation>
+				 * Provides access to a member of the actual element
 				 */
 				pointer operator -> () const {
 					return &**this;}
@@ -378,7 +378,7 @@ class MyDeque {
 				// operator ++
 
 				/**
-				 * <your documentation>
+				 * Steps forward (returns new position)
 				 */
 				const_iterator& operator ++ () {
 					++idx;
@@ -386,7 +386,7 @@ class MyDeque {
 					return *this;}
 
 				/**
-				 * <your documentation>
+				 * Steps forward (returns old position)
 				 */
 				const_iterator operator ++ (int) {
 					const_iterator x = *this;
@@ -397,7 +397,7 @@ class MyDeque {
 				// -----------
 				// operator --
 				/**
-				 * <your documentation>
+				 * Steps backward (returns new position)
 				 */
 				const_iterator& operator -- () {
 					--idx;
@@ -405,7 +405,7 @@ class MyDeque {
 					return *this;}
 
 				/**
-				 * <your documentation>
+				 * Steps backward (returns old position)
 				 */
 				const_iterator operator -- (int) {
 					const_iterator x = *this;
@@ -416,10 +416,10 @@ class MyDeque {
 				// -----------
 				// operator +=
 				/**
-				 * <your documentation>
+				 * Steps n elements forward (or backward, if n is negative)
 				 */
-				const_iterator& operator += (difference_type d) {
-					idx += d;
+				const_iterator& operator += (difference_type n) {
+					idx += n;
 					assert(valid());
 					return *this;
 				}
@@ -427,10 +427,10 @@ class MyDeque {
 				// -----------
 				// operator -=
 				/**
-				 * <your documentation>
+				 * Steps n elements backward (or forward, if n is negative)
 				 */
-				const_iterator& operator -= (difference_type d) {
-					idx -= d;
+				const_iterator& operator -= (difference_type n) {
+					idx -= n;
 					assert(valid());
 					return *this;}};
 
