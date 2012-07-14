@@ -696,7 +696,7 @@ class MyDeque {
 				--_begin;
 				_a.construct(&*begin(), v);
 			}
-			
+				
 			
 			assert(valid() );
 		}
@@ -711,7 +711,7 @@ class MyDeque {
 				return;
 			if (s < size() )
 				_end = &*destroy(_a, begin() + s, end() );
-			else if (s <= capacity() )
+			else if ((unsigned)s <= _end -_front && (unsigned)s <= _back - _begin)
 				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
 			else {		// allocate more capacity
 				size_type capacity = std::max(s, 2 * size() );
