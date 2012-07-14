@@ -28,7 +28,7 @@ To test the program:
 // TestDeque
 template <typename C>
 struct TestDeque : CppUnit::TestFixture {
-	// ----
+	// -----------
 	// constructor
 	void test_constructor_1 () {
 		C x;
@@ -42,7 +42,6 @@ struct TestDeque : CppUnit::TestFixture {
 	
 	void test_constructor_3 () {
 		C x(3, 11);
-		//if(DEBUG)cerr << "x: " << x[0] << endl;
 		CPPUNIT_ASSERT(x.size() == 3);
 		CPPUNIT_ASSERT(x[0] == 11);
 		CPPUNIT_ASSERT(x[1] == 11);
@@ -99,7 +98,7 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 
 	// ----------
-	// back const
+	// back_const
 	void test_back_const_1 () {
 		const C x(1,3);
 		CPPUNIT_ASSERT(x.back() == 3);
@@ -644,7 +643,7 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	// ------
-	// op equal
+	// op_equal
 	void test_op_equal_1 () {
 		C x(5,17);
 		C y(3, -2);
@@ -682,8 +681,8 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.size() == 3 );
 	}
 	
-	// -----
-	// iterator equality
+	// -----------------
+	// iterator_equality
 	void test_iterator_equality_1 () {
 		C x;
 		typename C::iterator b = x.begin();
