@@ -643,8 +643,8 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	// ------
-	// op_equal
-	void test_op_equal_1 () {
+	// assignment
+	void test_assignment_1 () {
 		C x(5,17);
 		C y(3, -2);
 		y = x;
@@ -659,7 +659,7 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x[1] == 17);
 	}
 	
-	void test_op_equal_2 () {
+	void test_assignment_2 () {
 		C x;
 		C y(3, -2);
 		y = x;
@@ -670,7 +670,7 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.empty() );
 	}
 	
-	void test_op_equal_3 () {
+	void test_assignment_3 () {
 		C x(3);
 		C y(1);
 		y = x;
@@ -783,9 +783,9 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_clear_1);
 	CPPUNIT_TEST(test_clear_2);
 	CPPUNIT_TEST(test_clear_3);
-	CPPUNIT_TEST(test_op_equal_1);
-	CPPUNIT_TEST(test_op_equal_2);
-	CPPUNIT_TEST(test_op_equal_3);
+	CPPUNIT_TEST(test_assignment_1);
+	CPPUNIT_TEST(test_assignment_2);
+	CPPUNIT_TEST(test_assignment_3);
 	CPPUNIT_TEST_SUITE_END();
 };
 
