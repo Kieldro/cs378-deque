@@ -471,6 +471,10 @@ class MyDeque {
 		 * Destroys this Deque
 		 */
 		~MyDeque () {
+			if (_front) {
+				clear();
+				_a.deallocate(_front, (_back - _front));
+			}
 			assert(valid() );
 		}
 
