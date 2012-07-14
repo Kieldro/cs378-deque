@@ -681,6 +681,83 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x.size() == 3 );
 	}
 	
+	// -------------
+	// test_equality
+	void test_equality_1 () {
+		C x;
+		C y;
+		CPPUNIT_ASSERT(x == x);
+		CPPUNIT_ASSERT(x == y);
+	}
+
+	void test_equality_2 () {
+		C x(1);
+		C y;
+		CPPUNIT_ASSERT(x == x);
+		CPPUNIT_ASSERT(!(x == y));
+	}
+
+	void test_equality_3 () {
+		C x(1);
+		C y(3);
+		CPPUNIT_ASSERT(y == y);
+		CPPUNIT_ASSERT(!(x == y));
+	}
+
+	void test_equality_4 () {
+		C x(1);
+		C y(1);
+		CPPUNIT_ASSERT(x == y);
+	}
+
+	void test_equality_5 () {
+		C x(3, 5);
+		C y(3, 7);
+		CPPUNIT_ASSERT(!(x == y));
+	}
+
+	void test_equality_6 () {
+		C x(3, 5);
+		C y(3, 5);
+		CPPUNIT_ASSERT(x == y);
+	}
+
+	void test_equality_7 () {
+		C x(3, 5);
+		C y(3, 5);
+		y.push_back(3);
+		CPPUNIT_ASSERT(!(x == y));
+	}
+
+	void test_equality_8 () {
+		C x(3, 5);
+		C y(3, 5);
+		y[2] = 7;
+		CPPUNIT_ASSERT(!(x == y));
+	}
+	
+	// -------------
+	// test_less_than
+	void test_less_than_1 () {
+		C x;
+		C y;
+		CPPUNIT_ASSERT(!(x < x));
+		CPPUNIT_ASSERT(!(x < y));
+	}
+
+	void test_less_than_2 () {
+		C x(1);
+		C y;
+		CPPUNIT_ASSERT(!(x < x));
+		CPPUNIT_ASSERT(y < x);
+	}
+
+	void test_less_than_3 () {
+		C x(1, -2);
+		C y(1);
+		CPPUNIT_ASSERT(x < y);
+	}
+	
 	// -----------------
 	// iterator_equality
 	void test_iterator_equality_1 () {
@@ -786,6 +863,17 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_assignment_1);
 	CPPUNIT_TEST(test_assignment_2);
 	CPPUNIT_TEST(test_assignment_3);
+	CPPUNIT_TEST(test_equality_1);
+	CPPUNIT_TEST(test_equality_2);
+	CPPUNIT_TEST(test_equality_3);
+	CPPUNIT_TEST(test_equality_4);
+	CPPUNIT_TEST(test_equality_5);
+	CPPUNIT_TEST(test_equality_6);
+	CPPUNIT_TEST(test_equality_7);
+	CPPUNIT_TEST(test_equality_8);
+	CPPUNIT_TEST(test_less_than_1);
+	CPPUNIT_TEST(test_less_than_2);
+	CPPUNIT_TEST(test_less_than_3);
 	CPPUNIT_TEST_SUITE_END();
 };
 
