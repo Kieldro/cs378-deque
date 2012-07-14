@@ -493,7 +493,7 @@ class MyDeque {
 				std::copy(rhs.begin(), rhs.end(), begin());
 				resize(rhs.size());
 			}	
-			else if (rhs.size() <= capacity()) {
+			else if ( (unsigned)rhs.size() <= _back - _begin) {
 				std::copy(rhs.begin(), rhs.begin() + size(), begin());
 				_end = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));
 			}
@@ -759,16 +759,6 @@ class MyDeque {
 				that = x;
 			}
 			assert(valid() );
-		}
-
-	private:
-		// --------
-		// capacity
-		/**
-		 * returns the capacity of this deque
-		 */
-		size_type capacity() const{
-			return _back - _front;
 		}
 };
 #endif // Deque_h
