@@ -8,7 +8,7 @@ echo COMPILING $source and $unitFile...
 g++ -ansi -pedantic -ldl -Wall $unitFile -lcppunit -o $unitFile.app
 	if ([ $? == 0 ]); then
 echo RUNNING UNIT TESTS...
-valgrind ./$unitFile.app #>& $outFile
+valgrind ./$unitFile.app >& $outFile
 	fi
 
 <<MULTICOMMENT
