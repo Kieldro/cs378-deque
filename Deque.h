@@ -692,13 +692,13 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void push_front (const_reference v) {
-			if(_front != _begin){		// if front has capacity
-				--_begin;
-				_a.construct(&*begin(), v);
-			}
-				
-			
-			assert(valid() );
+			if (_front == _begin) {
+				resize(size() + 1);
+				pop_back();
+			}	
+			--_begin;
+			_a.construct(&*begin(), v);	
+			assert(valid());
 		}
 
 		// ------
@@ -714,8 +714,12 @@ class MyDeque {
 			else if ((unsigned)s <= _end -_front && (unsigned)s <= _back - _begin)
 				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
 			else {		// allocate more capacity
-				size_type capacity = std::max(s, 2 * size() );
+				size_type capacity = std::max(s, 2 * size());
 				size_type temp1 = (capacity - s) / 2;
+				if (temp1 == 0) {
+					capacity += 3;
+				}
+				temp1 = (capacity - s) / 2;
 				size_type temp2 = (capacity - s) % 2? temp1 + 1: temp1;
 				MyDeque x(capacity, v);
 				std::copy(begin(), end(), x.begin()+temp1);

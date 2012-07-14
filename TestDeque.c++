@@ -702,14 +702,6 @@ struct TestDeque : CppUnit::TestFixture {
 	}
 	
 	// -----
-	// iterator star
-/*	void test_iterator_equality_1 () {
-		C x;
-		typename C::iterator b = x.begin();
-		CPPUNIT_ASSERT(x.begin == b);
-	}
-*/	
-	// -----
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
 	
@@ -730,14 +722,14 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_push_back_3);
 	CPPUNIT_TEST(test_front_1);
 	CPPUNIT_TEST(test_front_2);
-//	CPPUNIT_TEST(test_front_3);
+	CPPUNIT_TEST(test_front_3);
 	CPPUNIT_TEST(test_front_const_1);
 	CPPUNIT_TEST(test_front_const_2);
 	CPPUNIT_TEST(test_front_const_3);
 	CPPUNIT_TEST(test_push_front_1);
-//	CPPUNIT_TEST(test_push_front_2);
-//	CPPUNIT_TEST(test_push_front_3);
-//	CPPUNIT_TEST(test_push_front_4);
+	CPPUNIT_TEST(test_push_front_2);
+	CPPUNIT_TEST(test_push_front_3);
+	CPPUNIT_TEST(test_push_front_4);
 	CPPUNIT_TEST(test_pop_back_1);
 	CPPUNIT_TEST(test_pop_back_2);
 	CPPUNIT_TEST(test_pop_back_3);
@@ -794,7 +786,6 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_op_equal_1);
 	CPPUNIT_TEST(test_op_equal_2);
 	CPPUNIT_TEST(test_op_equal_3);
-	
 	CPPUNIT_TEST_SUITE_END();
 };
 
