@@ -346,7 +346,7 @@ class MyDeque {
 				// -----------
 				// constructor
 				/**
-				 * <your documentation>
+				 * Returns a const_iterator for d
 				 */
 				const_iterator (const MyDeque* d, size_type i)
 					: _d(d), idx(i) {assert(valid());}
@@ -435,7 +435,7 @@ class MyDeque {
 		// ------------
 		// constructors
 		/**
-		 * <your documentation>
+		 * Returns a Deque with the specified allocator
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
 			: _a(a), _front(0), _begin(0), _end(0), _back(0)
@@ -444,7 +444,7 @@ class MyDeque {
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a Deque with the specified size, values, and allocator
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
@@ -455,7 +455,7 @@ class MyDeque {
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a Deque that is a copy of the specified Deque
 		 */
 		MyDeque (const MyDeque& that) 
 			: _a(that._a) {
@@ -468,18 +468,20 @@ class MyDeque {
 		// ----------
 		// destructor
 		/**
-		 * <your documentation>
+		 * Destroys this Deque
 		 */
 		~MyDeque () {
-			//if(DEBUG)cerr << "~MyDeque(): " << size() << endl;
-			
+			if (_front) {
+				clear();
+				_a.deallocate(_front, (_back - _front));
+			}
 			assert(valid() );
 		}
 
 		// ----------
 		// operator =
 		/**
-		 * <your documentation>
+		 * Returns a reference of this Deque after copying the specified Deque
 		 */
 		MyDeque& operator = (const MyDeque& rhs) {
 			if (this == &rhs)
@@ -505,34 +507,34 @@ class MyDeque {
 		// -----------
 		// operator []
 		/**
-		 * <your documentation>
+		 * Returns a reference to the nth element
 		 */
-		reference operator [] (size_type index) {
-			pointer r = _begin + index;
-			
+		reference operator [] (size_type n) {
+			pointer r = _begin + n;
 			return *r;
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a constant reference to the nth element
 		 */
-		const_reference operator [] (size_type index) const {
-			return const_cast<MyDeque*>(this)->operator[](index);}
+		const_reference operator [] (size_type n) const {
+			return const_cast<MyDeque*>(this)->operator[](n);}
 
 		// --
 		// at
 		/**
-		 * <your documentation>
+		 * Returns a reference to the nth element
+		 * Throws an exception if n is out of bounds
 		 */
-		reference at (size_type index) {
-			if (index >= size() )
+		reference at (size_type n) {
+			if (n >= size() )
 				throw std::out_of_range("deque::_M_range_check");
-			
-			return (*this)[index];
+			return (*this)[n];
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a constant reference to the nth element
+ 		 * Throws an exception if n is out of bounds 
 		 */
 		const_reference at (size_type index) const {
 			if (index >= size() )
@@ -544,7 +546,7 @@ class MyDeque {
 		// ----
 		// back
 		/**
-		 * <your documentation>
+		 * Returns a reference of the element at the back
 		 */
 		reference back () {
 			assert(! empty());
@@ -552,7 +554,7 @@ class MyDeque {
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a constant reference of the element at the back
 		 */
 		const_reference back () const {
 			return const_cast<MyDeque*>(this)->back();
@@ -561,14 +563,14 @@ class MyDeque {
 		// -----
 		// begin
 		/**
-		 * <your documentation>
+		 * Returns a random-access iterator for the first element
 		 */
 		iterator begin () {
 			return iterator(this, 0);
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns a constant random-access iterator for the first element
 		 */
 		const_iterator begin () const {
 			return const_iterator(this, 0);}
@@ -576,7 +578,7 @@ class MyDeque {
 		// -----
 		// clear
 		/**
-		 * <your documentation>
+		 * Removes all elements (empties the container)
 		 */
 		void clear () {
 			resize(0);
@@ -585,7 +587,7 @@ class MyDeque {
 		// -----
 		// empty
 		/**
-		 * <your documentation>
+		 * Returns whether the container is empty
 		 */
 		bool empty () const {
 			return !size();}
@@ -593,13 +595,13 @@ class MyDeque {
 		// ---
 		// end
 		/**
-		 * <your documentation>
+		 * Returns a random-access iterator to the position after the last element
 		 */
 		iterator end () {
 			return iterator(this, size() );}
 
 		/**
-		 * <your documentation>
+		 * Returns a constant random-access iterator to the position after the last element
 		 */
 		const_iterator end () const {
 			return const_iterator(this, size() );}
@@ -607,13 +609,13 @@ class MyDeque {
 		// -----
 		// erase
 		/**
-		 * <your documentation>
+		 * Removes the element at iterator position pos and returns the position of the next element
 		 */
-		iterator erase (iterator it) {
-			if(it == end() )
+		iterator erase (iterator pos) {
+			if(pos == end() )
 				pop_back();
 			else {
-				std::copy(it+1, end(), it);
+				std::copy(pos+1, end(), pos);
 				resize(size()-1);
 			}
 			
@@ -624,15 +626,14 @@ class MyDeque {
 		// -----
 		// front
 		/**
-		 * <your documentation>
+		 * Returns the first element
 		 */
 		reference front () {
-			assert(!empty() );
 			return *(_begin);
 		}
 
 		/**
-		 * <your documentation>
+		 * Returns the first element
 		 */
 		const_reference front () const {
 			return const_cast<MyDeque*>(this)->front();}
@@ -640,24 +641,24 @@ class MyDeque {
 		// ------
 		// insert
 		/**
-		 * <your documentation>
+		 * Inserts a copy of v before iterator position pos and returns the position of the new element
 		 */
-		iterator insert (iterator it, const_reference v) {
-			if(it == end() )
+		iterator insert (iterator pos, const_reference v) {
+			if(pos == end() )
 				push_back(v);
 			else {
 				resize(size()+1);
-				std::copy(it, end(), it+1);
-				*it = v;
+				std::copy(pos, end(), pos+1);
+				*pos = v;
 			}
 			assert(valid() );
 			return iterator(this);
 		}
 
-		// ---
-		// pop
+		// --------
+		// pop_back
 		/**
-		 * <your documentation>
+		 * Removes the last element (does not return it)
 		 */
 		void pop_back () {
 			assert(!empty() );
@@ -666,7 +667,7 @@ class MyDeque {
 		}
 
 		/**
-		 * <your documentation>
+		 * Removes the first element (doest not return it)
 		 */
 		void pop_front () {
 			destroy(_a, begin(), begin()+1);
@@ -675,18 +676,20 @@ class MyDeque {
 			assert(valid() );
 		}
 
-		// ----
-		// push
+		// ---------
+		// push_back
 		/**
-		 * <your documentation>
+		 * Appends a copy of v at the end
 		 */
 		void push_back (const_reference v) {
 			resize(size() + 1, v);
 			assert(valid() );
 		}
 
+		// ----------
+		// push_front
 		/**
-		 * <your documentation>
+		 * Inserts a copy of v at the beginning
 		 */
 		void push_front (const_reference v) {
 			if (_front == _begin) {
@@ -701,7 +704,7 @@ class MyDeque {
 		// ------
 		// resize
 		/**
-		 * <your documentation>
+		 * Changes the number of elements to num (if size() grows new elements are created by their default constructor)
 		 */
 		void resize (size_type s, const_reference v = value_type()) {
 			if (s == size() )
@@ -732,7 +735,7 @@ class MyDeque {
 		// ----
 		// size
 		/**
-		 * <your documentation>
+		 * Returns the current number of elements
 		 */
 		size_type size () const {
 			return _end - _begin;
@@ -741,7 +744,7 @@ class MyDeque {
 		// ----
 		// swap
 		/**
-		 * <your documentation>
+		 * Swaps the data of this with the data of that
 		 */
 		void swap (MyDeque& that) {
 			if (_a == that._a) {
