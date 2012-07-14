@@ -282,7 +282,7 @@ class MyDeque {
 				 * <your documentation>
 				 */
 				iterator& operator -= (difference_type d) {
-					// <your code>
+					idx -= d;
 					assert(valid());
 					return *this;}};
 
@@ -429,8 +429,8 @@ class MyDeque {
 				/**
 				 * <your documentation>
 				 */
-				const_iterator& operator -= (difference_type) {
-					// <your code>
+				const_iterator& operator -= (difference_type d) {
+					idx -= d;
 					assert(valid());
 					return *this;}};
 
@@ -692,9 +692,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		void push_front (const_reference v) {
-			//resize(size() + 1);
 			if(_front != _begin){		// if front has capacity
-				if(DEBUG)cerr << "front != begin: " << 0 << endl;
 				--_begin;
 				_a.construct(&*begin(), v);
 			}
@@ -717,10 +715,15 @@ class MyDeque {
 				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
 			else {		// allocate more capacity
 				size_type capacity = std::max(s, 2 * size() );
-				MyDeque x(capacity);
-				x = *this;
+				size_type temp1 = (capacity - s) / 2;
+				size_type temp2 = (capacity - s) % 2? temp1 + 1: temp1;
+				MyDeque x(capacity, v);
+				std::copy(begin(), end(), x.begin()+temp1);
+				destroy(x._a, x.begin(), x.begin()+temp1);
+				destroy(x._a, x.end()-temp2, x.end());
+				x._begin += temp1;
+				x._end -= temp2;
 				swap(x);
-				resize(s, v);
 			}
 			assert(valid() );
 		}

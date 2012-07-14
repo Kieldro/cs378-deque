@@ -543,6 +543,20 @@ struct TestDeque : CppUnit::TestFixture {
 		CPPUNIT_ASSERT(x[1] == 7);
 		CPPUNIT_ASSERT(x[2] == 7);
 	}
+
+	void test_resize_7 () {
+		C x(4);
+		CPPUNIT_ASSERT(x.size() == 4);
+		x.resize(6);
+		CPPUNIT_ASSERT(x.size() == 6);
+	}
+
+	void test_resize_8 () {
+		C x(4);
+		CPPUNIT_ASSERT(x.size() == 4);
+		x.resize(8);
+		CPPUNIT_ASSERT(x.size() == 8);
+	}
 	
 	// -----
 	// erase
@@ -766,6 +780,9 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_resize_3);
 	CPPUNIT_TEST(test_resize_4); 
 	CPPUNIT_TEST(test_resize_5);
+	CPPUNIT_TEST(test_resize_6);
+	CPPUNIT_TEST(test_resize_7);
+	CPPUNIT_TEST(test_resize_8);
 	CPPUNIT_TEST(test_erase_1);
 	CPPUNIT_TEST(test_erase_2);
 	CPPUNIT_TEST(test_erase_3);
