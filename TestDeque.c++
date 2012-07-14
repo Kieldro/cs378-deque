@@ -885,7 +885,7 @@ int main () {
 	cout << "TestDeque.c++" << endl << endl;
 
 	CppUnit::TextTestRunner tr;
-//	tr.addTest(TestDeque<   deque<int> >::suite() );
+	tr.addTest(TestDeque<   deque<int> >::suite() );
 	tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 

@@ -16,7 +16,7 @@ echo GENERATING COMMIT LOG...
 git log > Deque.log
 
 echo RUNNING DOXYGEN...
-# doxygen -g
+#doxygen -g
 # EXTRACT_ALL            = YES
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
