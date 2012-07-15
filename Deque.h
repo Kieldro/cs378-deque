@@ -85,6 +85,7 @@ class MyDeque {
 		typedef typename allocator_type::reference			reference;
 		typedef typename allocator_type::const_reference	const_reference;
 		
+		typedef typename allocator_type::template rebind<T*>::other pointer_allocator_type;
 
 	public:
 		// -----------
@@ -107,8 +108,10 @@ class MyDeque {
 	private:
 		// ----
 		// data
-		allocator_type _a;	// allocator
-		
+		allocator_type _a;	// T allocator
+		pointer_allocator_type _pa; // T* allocator
+
+
 		pointer _front;		// front of allocated space
 		pointer _begin;		// beginning of used space
 		pointer _end;		// end of used space
@@ -420,13 +423,16 @@ class MyDeque {
 		 * Returns a Deque with the specified allocator
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-			: _a(a), _front(0), _begin(0), _end(0), _back(0) {assert(valid() );}
+			: _a(a), _front(0), _begin(0), _end(0), _back(0) {
+				_pa = pointer_allocator_type();
+				assert(valid() );}
 
 		/**
 		 * Returns a Deque with the specified size, values, and allocator
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
+			_pa = pointer_allocator_type();
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);
@@ -437,6 +443,7 @@ class MyDeque {
 		 */
 		MyDeque (const MyDeque& that) 
 			: _a(that._a) {
+			_pa = pointer_allocator_type();
 			_front = _begin = _a.allocate(that.size());
 			_end = _back = _begin + that.size();
 			uninitialized_copy(_a, that.begin(), that.end(), begin()); 
