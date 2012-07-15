@@ -9,11 +9,11 @@
 // --------
 // includes
 #include <algorithm>	// copy, equal, lexicographical_compare, max, swap
-#include <cassert>		// assert
-#include <iterator>		// iterator, bidirectional_iterator_tag
-#include <memory>		// allocator
+#include <cassert>	// assert
+#include <iterator>	// iterator, bidirectional_iterator_tag
+#include <memory>	// allocator
 #include <stdexcept>	// out_of_range
-#include <utility>		// !=, <=, >, >=
+#include <utility>	// !=, <=, >, >=
 #include <iostream>
 
 // -----
