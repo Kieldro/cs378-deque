@@ -4,7 +4,7 @@
 // Glenn P. Downing
 #ifndef Deque_h
 #define Deque_h
-#define DEBUG true
+#define DEBUG !true
 
 // --------
 // includes
@@ -38,7 +38,6 @@ BI destroy (A& a, BI b, BI e) {
 // uninitialized_copy
 template <typename A, typename II, typename BI>
 BI uninitialized_copy (A& a, II b, II e, BI x) {
-	//if(DEBUG)cerr << "uninitialized_copy(): " << endl;
 	BI p = x;
 	assert(b!=e);
 	try {
@@ -55,7 +54,6 @@ BI uninitialized_copy (A& a, II b, II e, BI x) {
 // uninitialized_fill
 template <typename A, typename BI, typename U>
 BI uninitialized_fill (A& a, BI b, BI e, const U& v) {
-	//if(DEBUG)cerr << "uninitialized_fill(): " << endl;
 	BI p = b;
 	assert(p == b);
 	try {
