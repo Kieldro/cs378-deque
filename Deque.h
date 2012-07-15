@@ -5,6 +5,7 @@
 #ifndef Deque_h
 #define Deque_h
 #define DEBUG !true
+#define WIDTH 10 // length of sub-arrays
 
 // --------
 // includes
