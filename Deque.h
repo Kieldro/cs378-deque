@@ -128,12 +128,12 @@ class MyDeque {
 			public:
 				// --------
 				// typedefs
-				typedef std::bidirectional_iterator_tag   iterator_category;
-				typedef typename MyDeque::value_type	  value_type;
-				typedef typename MyDeque::difference_type difference_type;
-				typedef typename MyDeque::pointer	  pointer;
-				typedef typename MyDeque::reference	  reference;
-				typedef typename MyDeque::size_type 	  size_type;
+				typedef std::bidirectional_iterator_tag   	iterator_category;
+				typedef typename MyDeque::value_type	  	value_type;
+				typedef typename MyDeque::difference_type 	difference_type;
+				typedef typename MyDeque::pointer	  		pointer;
+				typedef typename MyDeque::reference	  		reference;
+				typedef typename MyDeque::size_type 	  	size_type;
 
 			public:
 				// -----------
