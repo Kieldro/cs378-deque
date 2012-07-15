@@ -9,11 +9,11 @@
 // --------
 // includes
 #include <algorithm>	// copy, equal, lexicographical_compare, max, swap
-#include <cassert>	// assert
-#include <iterator>	// iterator, bidirectional_iterator_tag
-#include <memory>	// allocator
+#include <cassert>		// assert
+#include <iterator>		// iterator, bidirectional_iterator_tag
+#include <memory>		// allocator
 #include <stdexcept>	// out_of_range
-#include <utility>	// !=, <=, >, >=
+#include <utility>		// !=, <=, >, >=
 #include <iostream>
 
 // -----
@@ -101,8 +101,7 @@ class MyDeque {
 		 * <your documentation>
 		 */
 		friend bool operator < (const MyDeque& lhs, const MyDeque& rhs) {
-			return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end() );
-		}
+			return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end() );}
 
 	private:
 		// ----
@@ -172,7 +171,6 @@ class MyDeque {
 				// data
 				MyDeque* _d;
 				size_type idx;
-				
 
 			private:
 				// -----
