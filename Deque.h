@@ -472,17 +472,14 @@ class MyDeque {
 				std::copy(rhs.begin(), rhs.end(), begin());
 			else if (rhs.size() < size()) {
 				std::copy(rhs.begin(), rhs.end(), begin());
-				resize(rhs.size());
-			}	
+				resize(rhs.size());}	
 			else if ( (unsigned)rhs.size() <= _back - _begin) {
 				std::copy(rhs.begin(), rhs.begin() + size(), begin());
-				_end = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));
-			}
+				_end = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));}
 			else {
 				clear();
 				MyDeque x(rhs);
-				swap(x);
-			}
+				swap(x);}
 			assert(valid() );
 			return *this;}
 
