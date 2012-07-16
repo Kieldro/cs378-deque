@@ -487,6 +487,22 @@ class MyDeque {
 		~MyDeque () {
 			if (_front) {
 				clear();
+
+				// destroy data and deallocate inner arrays
+				/*for(pointer_pointer i = _fr; _fr != _ba; ++i) {
+					if (i == _fr && i == _ba - 1)
+						destroy(_a, _b, _e);
+					else if (i == _fr)
+						destroy(_a, _b, _b + WIDTH);
+					else if (i == _ba - 1)
+						destroy(_a, i[0], _e);
+					else
+						destroy(_a, i[0], i[0] + WIDTH);
+					_a.deallocate(i[0], WIDTH);
+				}*/
+
+				// deallocate outer array
+				//_pa.deallocate(_fr, (_ba - _fr));
 				_a.deallocate(_front, (_back - _front));}
 			assert(valid() );}
 
@@ -697,9 +713,9 @@ class MyDeque {
 		 * Changes the number of elements to num (if size() grows new elements are created by their default constructor)
 		 */
 		void resize (size_type s, const_reference v = value_type()) {
-			if (s == size() )
+			if (s == size())
 				return;
-			if (s < size() )
+			if (s < size())
 				_end = &*destroy(_a, begin() + s, end() );
 			else if ((unsigned)s <= (unsigned)(_end -_front) && (unsigned)s <= (unsigned)(_back - _begin))
 				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
