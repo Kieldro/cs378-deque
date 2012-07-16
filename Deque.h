@@ -455,11 +455,17 @@ class MyDeque {
 			// set pointer to end of data
 			_e = _fr[num_arrays - 1] + offset;
 			// fill inner arrays with default value
-			for (size_type i = 0; i < num_arrays - 1; ++i) {
+			/*for (size_type i = 0; i < num_arrays - 1; ++i) {
 				uninitialized_fill(_a, _fr[i], _fr[i] + WIDTH, v);
 			}
 			if (num_arrays > 0) // fill last array (might be partial)
-				uninitialized_fill(_a, _fr[num_arrays - 1], _e, v);
+				uninitialized_fill(_a, _fr[num_arrays - 1], _e, v);*/
+
+			for (size_type i = 0; i < num_arrays; ++i) {
+				_a.deallocate(_fr[i], WIDTH);
+			}
+
+			_pa.deallocate(_fr, num_arrays);
 
 			// v1.0
 			_front = _begin = _a.allocate(s);
@@ -473,7 +479,8 @@ class MyDeque {
 		MyDeque (const MyDeque& that) 
 			: _a(that._a) {
 			_pa = pointer_allocator_type();
-
+			_fr = _ba = 0;
+			_b = _e;
 			_front = _begin = _a.allocate(that.size());
 			_end = _back = _begin + that.size();
 			uninitialized_copy(_a, that.begin(), that.end(), begin()); 
@@ -487,7 +494,7 @@ class MyDeque {
 		~MyDeque () {
 			if (_front) {
 				clear();
-
+				
 				// destroy data and deallocate inner arrays
 				/*for(pointer_pointer i = _fr; _fr != _ba; ++i) {
 					if (i == _fr && i == _ba - 1)
@@ -501,7 +508,11 @@ class MyDeque {
 					_a.deallocate(i[0], WIDTH);
 				}*/
 
-				// deallocate outer array
+				//destroy(_a, _b, _e);
+				//_a.deallocate(_fr[0], WIDTH);
+
+				// destroy and deallocate outer array
+				//destroy(_pa, _fr, _ba);
 				//_pa.deallocate(_fr, (_ba - _fr));
 				_a.deallocate(_front, (_back - _front));}
 			assert(valid() );}
