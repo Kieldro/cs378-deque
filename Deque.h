@@ -436,16 +436,32 @@ class MyDeque {
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a), _pa() {
+
+			// we need s / WIDTH full arrays, and possibly 1 partial array
 			size_type num_arrays = s / WIDTH + (s % WIDTH? 1 : 0);
+			// allocate outer array and save pointer to front
 			_fr = _pa.allocate(num_arrays);
+			// allocate inner arrays
 			for (size_type i = 0; i < num_arrays; ++i) {
 				_fr[i] = _a.allocate(WIDTH);
 			}
+			// set pointer to back
 			_ba = _fr + num_arrays;
+			// set pointer to beginning of data
 			_b = _fr[0];
+			// offset < WIDTH if we have a partial array
 			size_type offset = WIDTH - (WIDTH * num_arrays - s); 
 			assert 	(0 < offset and offset <= WIDTH);
+			// set pointer to end of data
 			_e = _fr[num_arrays - 1] + offset;
+			// fill inner arrays with default value
+			for (size_type i = 0; i < num_arrays - 1; ++i) {
+				uninitialized_fill(_a, _fr[i], _fr[i] + WIDTH, v);
+			}
+			if (num_arrays > 0) // fill last array (might be partial)
+				uninitialized_fill(_a, _fr[num_arrays - 1], _e, v);
+
+			// v1.0
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);
