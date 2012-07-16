@@ -428,18 +428,14 @@ class MyDeque {
 		 * Returns a Deque with the specified allocator
 		 */
 		explicit MyDeque (const allocator_type& a = allocator_type() )
-			: _a(a), _front(0), _begin(0), _end(0), _back(0) {
-				_pa = pointer_allocator_type();
-				_fr = _ba = 0;
-				_b = _e = 0;
+			: _a(a), _pa(), _fr(0), _ba(0), _b(0), _e(0), _front(0), _begin(0), _end(0), _back(0){
 				assert(valid() );}
 
 		/**
 		 * Returns a Deque with the specified size, values, and allocator
 		 */
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
-			: _a(a) {
-			_pa = pointer_allocator_type();
+			: _a(a), _pa() {
 			size_type num_arrays = s / WIDTH + (s % WIDTH? 1 : 0);
 			_fr = _pa.allocate(num_arrays);
 			for (size_type i = 0; i < num_arrays; ++i) {
