@@ -440,13 +440,16 @@ class MyDeque {
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
 			_pa = pointer_allocator_type();
-
 			size_type num_arrays = s / WIDTH + (s % WIDTH? 1 : 0);
 			_fr = _pa.allocate(num_arrays);
+			for (size_type i = 0; i < num_arrays; ++i) {
+				_fr[i] = _a.allocate(WIDTH);
+			}
 			_ba = _fr + num_arrays;
 			_b = _fr[0];
-			size_type temp = WIDTH - WIDTH * num_arrays - s; 	
-			_e = _fr[num_arrays - 1] + temp;
+			size_type offset = WIDTH - WIDTH * num_arrays - s; 	
+			assert(0 < offset and offset <= WIDTH);
+			_e = _fr[num_arrays - 1] + offset;
 
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
@@ -459,6 +462,7 @@ class MyDeque {
 		MyDeque (const MyDeque& that) 
 			: _a(that._a) {
 			_pa = pointer_allocator_type();
+
 			_front = _begin = _a.allocate(that.size());
 			_end = _back = _begin + that.size();
 			uninitialized_copy(_a, that.begin(), that.end(), begin()); 
