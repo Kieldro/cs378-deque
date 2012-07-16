@@ -8,9 +8,9 @@ echo COMPILING $source and $unitFile...
 g++ -ansi -pedantic -ldl -Wall $unitFile -lcppunit -o $unitFile.app
 	if ([ $? == 0 ]); then
 echo RUNNING UNIT TESTS...
-valgrind ./$unitFile.app #>& $outFile
+valgrind ./$unitFile.app >& $outFile
 	fi
-<<MULTICOMMENT
+
 
 echo GENERATING COMMIT LOG...
 git log > Deque.log
@@ -24,7 +24,7 @@ echo RUNNING DOXYGEN...
 doxygen Doxyfile
 
 zip Deque README.txt html/* Deque.h Deque.log TestDeque.c++ TestDeque.out
-<<MULTICOMMENT
+
 turnin --submit inbleric cs378pj4 Deque.zip
 turnin --list   inbleric cs378pj4
 turnin --verify inbleric cs378pj4

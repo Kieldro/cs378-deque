@@ -1,3 +1,22 @@
+commit 6fc34881da28d5ad6198ca36cb0c62e69978e7eb
+Merge: e7fe402 183f6b6
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Mon Jul 16 18:26:27 2012 -0500
+
+    Merge branch 'master' of github.com:Kieldro/cs378-deque
+
+commit e7fe402573eed18e20aa8c157025c688d8931f46
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Mon Jul 16 18:24:56 2012 -0500
+
+    Final version turned in.
+
+commit 183f6b6ee59776e66770f1d821e07e57bee61ea7
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 18:20:20 2012 -0500
+
+    removed comment
+
 commit 156e2e7cf8a2e77fa817d7cbe246f3b333a4c624
 Author: fin <fin@cs.utexas.edu>
 Date:   Mon Jul 16 18:15:36 2012 -0500

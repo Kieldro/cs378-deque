@@ -1,8 +1,8 @@
-==17463== Memcheck, a memory error detector
-==17463== Copyright (C) 2002-2009, and GNU GPL'd, by Julian Seward et al.
-==17463== Using Valgrind-3.6.0.SVN-Debian and LibVEX; rerun with -h for copyright info
-==17463== Command: ./TestDeque.c++.app
-==17463== 
+==17824== Memcheck, a memory error detector
+==17824== Copyright (C) 2002-2009, and GNU GPL'd, by Julian Seward et al.
+==17824== Using Valgrind-3.6.0.SVN-Debian and LibVEX; rerun with -h for copyright info
+==17824== Command: ./TestDeque.c++.app
+==17824== 
 TestDeque.c++
 
 .........................................................................................................................
@@ -12,18 +12,18 @@ OK (121 tests)
 
 
 Done.
-==17463== 
-==17463== HEAP SUMMARY:
-==17463==     in use at exit: 122,880 bytes in 6 blocks
-==17463==   total heap usage: 11,926 allocs, 11,920 frees, 1,663,311 bytes allocated
-==17463== 
-==17463== LEAK SUMMARY:
-==17463==    definitely lost: 0 bytes in 0 blocks
-==17463==    indirectly lost: 0 bytes in 0 blocks
-==17463==      possibly lost: 0 bytes in 0 blocks
-==17463==    still reachable: 122,880 bytes in 6 blocks
-==17463==         suppressed: 0 bytes in 0 blocks
-==17463== Rerun with --leak-check=full to see details of leaked memory
-==17463== 
-==17463== For counts of detected and suppressed errors, rerun with: -v
-==17463== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 4 from 4)
+==17824== 
+==17824== HEAP SUMMARY:
+==17824==     in use at exit: 122,880 bytes in 6 blocks
+==17824==   total heap usage: 11,926 allocs, 11,920 frees, 1,663,311 bytes allocated
+==17824== 
+==17824== LEAK SUMMARY:
+==17824==    definitely lost: 0 bytes in 0 blocks
+==17824==    indirectly lost: 0 bytes in 0 blocks
+==17824==      possibly lost: 0 bytes in 0 blocks
+==17824==    still reachable: 122,880 bytes in 6 blocks
+==17824==         suppressed: 0 bytes in 0 blocks
+==17824== Rerun with --leak-check=full to see details of leaked memory
+==17824== 
+==17824== For counts of detected and suppressed errors, rerun with: -v
+==17824== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 4 from 4)
