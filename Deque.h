@@ -5,7 +5,7 @@
 #ifndef Deque_h
 #define Deque_h
 #define DEBUG !true
-#define WIDTH 10 // length of sub-arrays
+#define WIDTH 50 // length of sub-arrays
 
 // --------
 // includes
@@ -73,19 +73,20 @@ class MyDeque {
 	public:
 		// --------
 		// typedefs
-		typedef A											allocator_type;
-		typedef typename allocator_type::value_type			value_type;		
+		typedef A						allocator_type;
+		typedef typename allocator_type::value_type		value_type;	// T		
 
-		typedef typename allocator_type::size_type			size_type;
+		typedef typename allocator_type::size_type		size_type;
 		typedef typename allocator_type::difference_type	difference_type;
 
-		typedef typename allocator_type::pointer			pointer;
+		typedef typename allocator_type::pointer		pointer;	// T*
 		typedef typename allocator_type::const_pointer		const_pointer;
 
-		typedef typename allocator_type::reference			reference;
+		typedef typename allocator_type::reference		reference;
 		typedef typename allocator_type::const_reference	const_reference;
 		
 		typedef typename allocator_type::template rebind<T*>::other pointer_allocator_type;
+		typedef typename pointer_allocator_type::pointer	pointer_pointer; // T**
 
 	public:
 		// -----------
@@ -110,7 +111,11 @@ class MyDeque {
 		// data
 		allocator_type _a;	// T allocator
 		pointer_allocator_type _pa; // T* allocator
-
+		
+		pointer_pointer _fr;	// front of outer array
+		pointer_pointer _ba;	// back of outer array
+		pointer _b;		// beginning of inner array
+		pointer _e;		// end of inner array
 
 		pointer _front;		// front of allocated space
 		pointer _begin;		// beginning of used space
@@ -425,6 +430,8 @@ class MyDeque {
 		explicit MyDeque (const allocator_type& a = allocator_type() )
 			: _a(a), _front(0), _begin(0), _end(0), _back(0) {
 				_pa = pointer_allocator_type();
+				_fr = _ba = 0;
+				_b = _e = 0;
 				assert(valid() );}
 
 		/**
@@ -433,6 +440,14 @@ class MyDeque {
 		explicit MyDeque (size_type s, const_reference v = value_type(), const allocator_type& a = allocator_type())
 			: _a(a) {
 			_pa = pointer_allocator_type();
+
+			size_type num_arrays = s / WIDTH + (s % WIDTH? 1 : 0);
+			_fr = _pa.allocate(num_arrays);
+			_ba = _fr + num_arrays;
+			_b = _fr[0];
+			size_type temp = WIDTH - WIDTH * num_arrays - s; 	
+			_e = _fr[num_arrays - 1] + temp;
+
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);
@@ -473,7 +488,7 @@ class MyDeque {
 			else if (rhs.size() < size()) {
 				std::copy(rhs.begin(), rhs.end(), begin());
 				resize(rhs.size());}	
-			else if ( (unsigned)rhs.size() <= _back - _begin) {
+			else if ((unsigned)rhs.size() <= (unsigned)(_back - _begin)) {
 				std::copy(rhs.begin(), rhs.begin() + size(), begin());
 				_end = &(*uninitialized_copy(_a, rhs.begin() + size(), rhs.end(), end()));}
 			else {
@@ -671,7 +686,7 @@ class MyDeque {
 				return;
 			if (s < size() )
 				_end = &*destroy(_a, begin() + s, end() );
-			else if ((unsigned)s <= _end -_front && (unsigned)s <= _back - _begin)
+			else if ((unsigned)s <= (unsigned)(_end -_front) && (unsigned)s <= (unsigned)(_back - _begin))
 				_end = &*uninitialized_fill(_a, end(), begin() + s, v);
 			else {		// allocate more capacity
 				size_type capacity = std::max(s, 2 * size());
