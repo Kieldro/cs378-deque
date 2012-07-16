@@ -377,6 +377,7 @@ struct TestDeque : CppUnit::TestFixture {
             it1 -= 1;
 			CPPUNIT_ASSERT(*it1 == y);
 		}
+
 		CPPUNIT_ASSERT(it1 == d.begin());
 	}
 
