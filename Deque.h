@@ -447,10 +447,9 @@ class MyDeque {
 			}
 			_ba = _fr + num_arrays;
 			_b = _fr[0];
-			size_type offset = WIDTH - WIDTH * num_arrays - s; 	
-			assert(0 < offset and offset <= WIDTH);
+			size_type offset = WIDTH - (WIDTH * num_arrays - s); 
+			assert 	(0 < offset and offset <= WIDTH);
 			_e = _fr[num_arrays - 1] + offset;
-
 			_front = _begin = _a.allocate(s);
 			_end = _back = _begin + s;
 			uninitialized_fill(_a, begin(), end(), v);

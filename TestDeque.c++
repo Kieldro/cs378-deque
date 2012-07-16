@@ -1559,7 +1559,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_iter_minus_equals_2);
 	CPPUNIT_TEST(test_iter_minus_equals_3);
 	CPPUNIT_TEST(test_iter_minus_equals_4);
-/*
+
 	CPPUNIT_TEST(test_constructor_1);
 	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
@@ -1652,7 +1652,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_less_than_1);
 	CPPUNIT_TEST(test_less_than_2);
 	CPPUNIT_TEST(test_less_than_3);
-*/	CPPUNIT_TEST_SUITE_END();
+	CPPUNIT_TEST_SUITE_END();
 };
 
 // ----
