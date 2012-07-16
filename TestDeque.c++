@@ -28,6 +28,786 @@ To test the program:
 // TestDeque
 template <typename C>
 struct TestDeque : CppUnit::TestFixture {
+
+	// ITERATOR TESTS
+	// ------------------
+	// test_iter_equality
+	// ------------------
+
+	void test_iter_equality_1() {
+		C d(9, 5);
+		typename C::iterator it1 = d.begin();
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+		it1 = d.begin() + 9;
+	    CPPUNIT_ASSERT(it1 != it2);
+		it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_equality_2() {
+		C d(13, 200);
+		C e(13, 200);
+		typename C::iterator it1 = d.begin();
+		typename C::iterator it2 = e.begin();
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = d.end();
+		it2 = e.end();
+		CPPUNIT_ASSERT(it1 != it2);
+	}
+
+	void test_iter_equality_3() {
+		C d(10, 3);
+		typename C::iterator it1 = d.begin() + 3;
+		typename C::iterator it2 = d.begin() + 7;
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = it2;
+		CPPUNIT_ASSERT(it1 == it2);
+		--it1;
+		CPPUNIT_ASSERT(it1 != it2);
+		++it1;
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_equality_4() {
+		C d(808, 300);
+		typename C::iterator it1 = d.begin() + 3;
+		typename C::iterator it2 = d.begin() + 7;
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = it2;
+		CPPUNIT_ASSERT(it1 == it2);
+		it1 = it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+		--it1;
+		CPPUNIT_ASSERT(it1 != it2);
+		++it1;
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// --------------
+	// test_iter_plus
+	// --------------
+
+	void test_iter_plus_1() {
+		C d(9, 5);
+		typename C::iterator it1 = d.begin();
+		it1 = it1 + 9;
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_plus_2() {
+		const int x = 3;
+		const int y = 200;
+		C d(x, y);
+		typename C::iterator it1 = d.begin();
+
+		for (int i = 0; i < x; ++i) {
+			CPPUNIT_ASSERT(*it1 == y);
+			it1 = it1 + 1;
+		}
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	void test_iter_plus_3() {
+		C d(1, 100);
+		d.push_front(99);
+		d.push_back(101);
+		typename C::iterator it1 = d.begin();
+        CPPUNIT_ASSERT(*it1 == 99);
+		it1 += 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		++it1;
+		CPPUNIT_ASSERT(*it1 == 101);
+	}
+
+	void test_iter_plus_4() {
+		C d(512, 5);
+		typename C::iterator it1 = d.begin();
+		it1 = it1 + 512;
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ---------------
+	// test_iter_minus
+	// ---------------
+
+	void test_iter_minus_1() {
+		C d(9, 5);
+		typename C::iterator it1 = d.end();
+		it1 = it1 - 9;
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_minus_2() {
+		const int x = 3;
+		const int y = 200;
+		C d(x, y);
+		typename C::iterator it1 = d.end();
+
+		for (int i = x; i > 0; --i) {
+            --it1;
+			CPPUNIT_ASSERT(*it1 == y);
+		}
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	void test_iter_minus_3() {
+		C d(1, 100);
+		d.push_front(99);
+		d.push_back(101);
+		typename C::iterator it1 = d.end() - 1;
+        CPPUNIT_ASSERT(*it1 == 101);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		--it1;
+		CPPUNIT_ASSERT(*it1 == 99);
+	}
+
+	void test_iter_minus_4() {
+		C d(512, 5);
+		typename C::iterator it1 = d.end();
+		it1 = it1 - 512;
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ---------------------
+	// test_iter_dereference
+	// ---------------------
+
+	void test_iter_dereference_1() {
+		C d(11, 6);
+		for(int i = 0; i < 6; ++i)
+		    d.push_back(i);
+		typename C::iterator it1 = d.end() - 6;
+		CPPUNIT_ASSERT(*it1 == 0);
+		typename C::iterator it2 = d.begin() + 10;
+		CPPUNIT_ASSERT(*it2 == 6);
+		++it2;
+
+		// it1 and it2 both point to 0, after the 11 6's
+		for(int i = 0; i < 6; ++i) {
+			CPPUNIT_ASSERT(*it2 == i);
+			CPPUNIT_ASSERT(*it1 == *it2);
+			CPPUNIT_ASSERT(it1 == it2);
+			++it1;
+			++it2;
+		}
+
+		typename C::iterator it3 = d.begin();
+		for (int i = 0; i < 17; ++i) {
+			*it3 = i + 10;
+			++it3;
+		}
+		it3 = d.begin();
+		for (int i = 0; i < 17; ++i) {
+			CPPUNIT_ASSERT(*it3 == i + 10);
+			++it3;
+		}
+	}
+
+	void test_iter_dereference_2() {
+		C d;
+		d.push_back(5); 
+		d.push_front(0);
+		d.push_back(11);
+		typename C::iterator it1 = d.begin();
+		CPPUNIT_ASSERT(*it1 == 0);
+		CPPUNIT_ASSERT(*(d.end() - 1) == 11);
+		++it1;
+		CPPUNIT_ASSERT(*it1 == 5);
+		*it1 = 2000;
+		CPPUNIT_ASSERT(*it1 == 2000);
+	}
+
+	void test_iter_dereference_3() {
+		C d(9, 0);
+		d.push_back(-1); 
+		d.push_front(-1);
+		CPPUNIT_ASSERT(*(d.begin()) == -1);
+		CPPUNIT_ASSERT(*(d.end() - 1) == -1);
+		typename C::iterator it1 = d.end();
+		it1 -= 5;
+		CPPUNIT_ASSERT(*it1 == 0);
+		*it1 = 777;
+		CPPUNIT_ASSERT(*it1 == 777);
+	}
+
+	void test_iter_dereference_4() {
+		C d(900, 6);
+		for(int i = 0; i < 6; ++i)
+		    d.push_back(i);
+		typename C::iterator it1 = d.end() - 6;
+		CPPUNIT_ASSERT(*it1 == 0);
+		typename C::iterator it2 = d.begin() + 899;
+		CPPUNIT_ASSERT(*it2 == 6);
+		++it2;
+
+		for(int i = 0; i < 6; ++i) {
+			CPPUNIT_ASSERT(*it2 == i);
+			CPPUNIT_ASSERT(*it1 == *it2);
+			CPPUNIT_ASSERT(it1 == it2);
+			++it1;
+			++it2;
+		}
+	}
+
+	// --------------
+	// iter_increment
+	// --------------
+
+	void test_iter_increment_1() {
+		C d;
+		for (int i = 0; i < 600; ++i)
+			d.push_back(i);
+
+		typename C::iterator it = d.begin();
+		for (int i = 0; i < 600; ++i) {
+			CPPUNIT_ASSERT(*it == i);
+			++it;
+		}
+
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it == it2);
+	}
+
+	void test_iter_increment_2() {
+		C d(1, 5);
+		typename C::iterator it1 = d.begin();
+		CPPUNIT_ASSERT(*it1 == 5);
+		++it1;
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_increment_3() {
+		C d;
+		d.push_back(10);
+		d.push_back(11);
+
+		typename C::iterator it1 = d.begin();
+		typename C::iterator it2 = it1++;
+		CPPUNIT_ASSERT(*it1 == 11);
+		CPPUNIT_ASSERT(*it2 == 10);
+		it1++;
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	// --------------
+	// iter_decrement
+	// --------------
+
+	void test_iter_decrement_1() {
+		C d;
+		for (int i = 0; i < 600; ++i)
+			d.push_back(i);
+
+		typename C::iterator it = d.end();
+		for (int i = 599; i >= 0; --i) {
+			--it;
+			CPPUNIT_ASSERT(*it == i);
+		}
+
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it == it2);
+	}
+
+	void test_iter_decrement_2() {
+		C d(1, 5);
+		typename C::iterator it1 = d.end();
+		--it1;
+		CPPUNIT_ASSERT(*it1 == 5);
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_decrement_3() {
+		C d;
+		d.push_back(10);
+		d.push_back(11);
+
+		typename C::iterator it1 = d.end();
+		typename C::iterator it2 = it1--;
+		CPPUNIT_ASSERT(it2 == d.end());
+		CPPUNIT_ASSERT(*it1 == 11);
+		it1--;
+		CPPUNIT_ASSERT(*it1 == 10);
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	// ---------------------
+	// test_iter_plus_equals
+	// ---------------------
+
+	void test_iter_plus_equals_1() {
+		C d(9, 5);
+		typename C::iterator it1 = d.begin();
+		it1 += 9;
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_plus_equals_2() {
+		const int x = 3;
+		const int y = 200;
+		C d(x, y);
+		typename C::iterator it1 = d.begin();
+
+		for (int i = 0; i < x; ++i) {
+			CPPUNIT_ASSERT(*it1 == y);
+			it1 += 1;
+		}
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	void test_iter_plus_equals_3() {
+		C d(512, 5);
+		typename C::iterator it1 = d.begin();
+		it1 += 512;
+		typename C::iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ----------------------
+	// test_iter_minus_equals
+	// ----------------------
+
+	void test_iter_minus_equals_1() {
+		C d(9, 5);
+		typename C::iterator it1 = d.end();
+		it1 -= 9;
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_iter_minus_equals_2() {
+		const int x = 3;
+		const int y = 200;
+		C d(x, y);
+		typename C::iterator it1 = d.end();
+
+		for (int i = x; i > 0; --i) {
+            it1 -= 1;
+			CPPUNIT_ASSERT(*it1 == y);
+		}
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	void test_iter_minus_equals_3() {
+		C d(1, 100);
+		d.push_front(99);
+		d.push_back(101);
+		typename C::iterator it1 = d.end();
+		it1 -= 1;
+        CPPUNIT_ASSERT(*it1 == 101);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 99);
+	}
+
+	void test_iter_minus_equals_4() {
+		C d(512, 5);
+		typename C::iterator it1 = d.end();
+		it1 -= 512;
+		typename C::iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// CONST_ITERATOR TESTS
+
+	// ------------------------
+	// test_const_iter_equality
+	// ------------------------
+
+	void test_const_iter_equality_1() {
+		const C d(9, 5);
+		typename C::const_iterator it1 = d.begin();
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+		it1 = d.begin() + 9;
+	    CPPUNIT_ASSERT(it1 != it2);
+		it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_equality_2() {
+		const C d(13, 200);
+		const C e(13, 200);
+		typename C::const_iterator it1 = d.begin();
+		typename C::const_iterator it2 = e.begin();
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = d.end();
+		it2 = e.end();
+		CPPUNIT_ASSERT(it1 != it2);
+	}
+
+	void test_const_iter_equality_3() {
+		const C d(10, 3);
+		typename C::const_iterator it1 = d.begin() + 3;
+		typename C::const_iterator it2 = d.begin() + 7;
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = it2;
+		CPPUNIT_ASSERT(it1 == it2);
+		--it1;
+		CPPUNIT_ASSERT(it1 != it2);
+		++it1;
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_equality_4() {
+		const C d(808, 300);
+		typename C::const_iterator it1 = d.begin() + 3;
+		typename C::const_iterator it2 = d.begin() + 7;
+		CPPUNIT_ASSERT(it1 != it2);
+		it1 = it2;
+		CPPUNIT_ASSERT(it1 == it2);
+		it1 = it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+		--it1;
+		CPPUNIT_ASSERT(it1 != it2);
+		++it1;
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// --------------------
+	// test_const_iter_plus
+	// --------------------
+
+	void test_const_iter_plus_1() {
+		const C d(9, 5);
+		typename C::const_iterator it1 = d.begin();
+		it1 = it1 + 9;
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_plus_2() {
+		const int x = 3;
+		const int y = 200;
+		const C d(x, y);
+		typename C::const_iterator it1 = d.begin();
+
+		for (int i = 0; i < x; ++i) {
+			CPPUNIT_ASSERT(*it1 == y);
+			it1 = it1 + 1;
+		}
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	void test_const_iter_plus_3() {
+		C d(1, 100);
+		d.push_front(99);
+		d.push_back(101);
+		const C e(d);
+
+		typename C::const_iterator it1 = e.begin();
+        CPPUNIT_ASSERT(*it1 == 99);
+		it1 += 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		++it1;
+		CPPUNIT_ASSERT(*it1 == 101);
+	}
+
+	void test_const_iter_plus_4() {
+		const C d(512, 5);
+		typename C::const_iterator it1 = d.begin();
+		it1 = it1 + 512;
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ---------------------
+	// test_const_iter_minus
+	// ---------------------
+
+	void test_const_iter_minus_1() {
+		const C d(9, 5);
+		typename C::const_iterator it1 = d.end();
+		it1 = it1 - 9;
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_minus_2() {
+		const int x = 3;
+		const int y = 200;
+		const C d(x, y);
+		typename C::const_iterator it1 = d.end();
+
+		for (int i = x; i > 0; --i) {
+            --it1;
+			CPPUNIT_ASSERT(*it1 == y);
+		}
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	void test_const_iter_minus_3() {
+		C e(1, 100);
+		e.push_front(99);
+		e.push_back(101);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.end() - 1;
+        CPPUNIT_ASSERT(*it1 == 101);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		--it1;
+		CPPUNIT_ASSERT(*it1 == 99);
+	}
+
+	void test_const_iter_minus_4() {
+		const C d(512, 5);
+		typename C::const_iterator it1 = d.end();
+		it1 = it1 - 512;
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ---------------------------
+	// test_const_iter_dereference
+	// ---------------------------
+
+	void test_const_iter_dereference_1() {
+		C e(11, 6);
+		for(int i = 0; i < 6; ++i)
+		    e.push_back(i);
+		const C d(e);
+		typename C::const_iterator it1 = d.end() - 6;
+		CPPUNIT_ASSERT(*it1 == 0);
+		typename C::const_iterator it2 = d.begin() + 10;
+		CPPUNIT_ASSERT(*it2 == 6);
+		++it2;
+
+		// it1 and it2 both point to 0, after the 11 6's
+		for(int i = 0; i < 6; ++i) {
+			CPPUNIT_ASSERT(*it2 == i);
+			CPPUNIT_ASSERT(*it1 == *it2);
+			CPPUNIT_ASSERT(it1 == it2);
+			++it1;
+			++it2;
+		}
+	}
+
+	void test_const_iter_dereference_2() {
+		C e;
+		e.push_back(5); 
+		e.push_front(0);
+		e.push_back(11);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.begin();
+		CPPUNIT_ASSERT(*it1 == 0);
+		CPPUNIT_ASSERT(*(d.end() - 1) == 11);
+		++it1;
+		CPPUNIT_ASSERT(*it1 == 5);
+	}
+
+	void test_const_iter_dereference_3() {
+		C e(9, 0);
+		e.push_back(-1); 
+		e.push_front(-1);
+		const C d(e);
+
+		CPPUNIT_ASSERT(*(d.begin()) == -1);
+		CPPUNIT_ASSERT(*(d.end() - 1) == -1);
+		typename C::const_iterator it1 = d.end();
+		it1 -= 5;
+		CPPUNIT_ASSERT(*it1 == 0);
+	}
+
+	void test_const_iter_dereference_4() {
+		C e(900, 6);
+		for(int i = 0; i < 6; ++i)
+		    e.push_back(i);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.end() - 6;
+		CPPUNIT_ASSERT(*it1 == 0);
+		typename C::const_iterator it2 = d.begin() + 899;
+		CPPUNIT_ASSERT(*it2 == 6);
+		++it2;
+
+		for(int i = 0; i < 6; ++i) {
+			CPPUNIT_ASSERT(*it2 == i);
+			CPPUNIT_ASSERT(*it1 == *it2);
+			CPPUNIT_ASSERT(it1 == it2);
+			++it1;
+			++it2;
+		}
+	}
+
+	// --------------------
+	// const_iter_increment
+	// --------------------
+
+	void test_const_iter_increment_1() {
+		C e;
+		for (int i = 0; i < 600; ++i)
+			e.push_back(i);
+		const C d(e);
+
+		typename C::const_iterator it = d.begin();
+		for (int i = 0; i < 600; ++i) {
+			CPPUNIT_ASSERT(*it == i);
+			++it;
+		}
+
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it == it2);
+	}
+
+	void test_const_iter_increment_2() {
+		const C d(1, 5);
+		typename C::const_iterator it1 = d.begin();
+		CPPUNIT_ASSERT(*it1 == 5);
+		++it1;
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_increment_3() {
+		C e;
+		e.push_back(10);
+		e.push_back(11);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.begin();
+		typename C::const_iterator it2 = it1++;
+		CPPUNIT_ASSERT(*it1 == 11);
+		CPPUNIT_ASSERT(*it2 == 10);
+		it1++;
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	// --------------------
+	// const_iter_decrement
+	// --------------------
+
+	void test_const_iter_decrement_1() {
+		C e;
+		for (int i = 0; i < 600; ++i)
+			e.push_back(i);
+		const C d(e);
+
+		typename C::const_iterator it = d.end();
+		for (int i = 599; i >= 0; --i) {
+			--it;
+			CPPUNIT_ASSERT(*it == i);
+		}
+
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it == it2);
+	}
+
+	void test_const_iter_decrement_2() {
+		const C d(1, 5);
+		typename C::const_iterator it1 = d.end();
+		--it1;
+		CPPUNIT_ASSERT(*it1 == 5);
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_decrement_3() {
+		C e;
+		e.push_back(10);
+		e.push_back(11);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.end();
+		typename C::const_iterator it2 = it1--;
+		CPPUNIT_ASSERT(it2 == d.end());
+		CPPUNIT_ASSERT(*it1 == 11);
+		it1--;
+		CPPUNIT_ASSERT(*it1 == 10);
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	// ---------------------------
+	// test_const_iter_plus_equals
+	// ---------------------------
+
+	void test_const_iter_plus_equals_1() {
+		const C d(9, 5);
+		typename C::const_iterator it1 = d.begin();
+		it1 += 9;
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_plus_equals_2() {
+		const int x = 3;
+		const int y = 200;
+		const C d(x, y);
+		typename C::const_iterator it1 = d.begin();
+
+		for (int i = 0; i < x; ++i) {
+			CPPUNIT_ASSERT(*it1 == y);
+			it1 += 1;
+		}
+		CPPUNIT_ASSERT(it1 == d.end());
+	}
+
+	void test_const_iter_plus_equals_3() {
+		const C d(512, 5);
+		typename C::const_iterator it1 = d.begin();
+		it1 += 512;
+		typename C::const_iterator it2 = d.end();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	// ----------------------------
+	// test_const_iter_minus_equals
+	// ----------------------------
+
+	void test_const_iter_minus_equals_1() {
+		const C d(9, 5);
+		typename C::const_iterator it1 = d.end();
+		it1 -= 9;
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
+	void test_const_iter_minus_equals_2() {
+		const int x = 3;
+		const int y = 200;
+		const C d(x, y);
+		typename C::const_iterator it1 = d.end();
+
+		for (int i = x; i > 0; --i) {
+            it1 -= 1;
+			CPPUNIT_ASSERT(*it1 == y);
+		}
+		CPPUNIT_ASSERT(it1 == d.begin());
+	}
+
+	void test_const_iter_minus_equals_3() {
+		C e(1, 100);
+		e.push_front(99);
+		e.push_back(101);
+		const C d(e);
+
+		typename C::const_iterator it1 = d.end();
+		it1 -= 1;
+        CPPUNIT_ASSERT(*it1 == 101);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 100);
+		it1 -= 1;
+		CPPUNIT_ASSERT(*it1 == 99);
+	}
+
+	void test_const_iter_minus_equals_4() {
+		const C d(512, 5);
+		typename C::const_iterator it1 = d.end();
+		it1 -= 512;
+		typename C::const_iterator it2 = d.begin();
+		CPPUNIT_ASSERT(it1 == it2);
+	}
+
 	// -----------
 	// constructor
 	void test_constructor_1 () {
@@ -781,6 +1561,37 @@ struct TestDeque : CppUnit::TestFixture {
 	// -----
 	// suite
 	CPPUNIT_TEST_SUITE(TestDeque);
+
+	CPPUNIT_TEST(test_iter_equality_1);
+	CPPUNIT_TEST(test_iter_equality_2);
+	CPPUNIT_TEST(test_iter_equality_3);
+	CPPUNIT_TEST(test_iter_equality_4);
+	CPPUNIT_TEST(test_iter_plus_1);
+	CPPUNIT_TEST(test_iter_plus_2);
+	CPPUNIT_TEST(test_iter_plus_3);
+	CPPUNIT_TEST(test_iter_plus_4);
+	CPPUNIT_TEST(test_iter_minus_1);
+	CPPUNIT_TEST(test_iter_minus_2);
+	CPPUNIT_TEST(test_iter_minus_3);
+	CPPUNIT_TEST(test_iter_minus_4);
+	CPPUNIT_TEST(test_iter_dereference_1);
+	CPPUNIT_TEST(test_iter_dereference_2);
+	CPPUNIT_TEST(test_iter_dereference_3); 
+	CPPUNIT_TEST(test_iter_dereference_4); 
+	CPPUNIT_TEST(test_iter_increment_1);
+	CPPUNIT_TEST(test_iter_increment_2);
+	CPPUNIT_TEST(test_iter_increment_3);
+	CPPUNIT_TEST(test_iter_decrement_1);
+	CPPUNIT_TEST(test_iter_decrement_2);
+	CPPUNIT_TEST(test_iter_decrement_3);
+	CPPUNIT_TEST(test_iter_plus_equals_1);
+	CPPUNIT_TEST(test_iter_plus_equals_2);
+	CPPUNIT_TEST(test_iter_plus_equals_3);
+	CPPUNIT_TEST(test_iter_minus_equals_1);
+	CPPUNIT_TEST(test_iter_minus_equals_2);
+	CPPUNIT_TEST(test_iter_minus_equals_3);
+	CPPUNIT_TEST(test_iter_minus_equals_4);
+
 	CPPUNIT_TEST(test_constructor_1);
 	CPPUNIT_TEST(test_constructor_2);
 	CPPUNIT_TEST(test_constructor_3);
@@ -884,7 +1695,7 @@ int main () {
 	cout << "TestDeque.c++" << endl << endl;
 
 	CppUnit::TextTestRunner tr;
-//	tr.addTest(TestDeque<   deque<int> >::suite() );
+	//tr.addTest(TestDeque<   deque<int> >::suite() );
 	tr.addTest(TestDeque< MyDeque<int> >::suite() );
 	tr.run();
 

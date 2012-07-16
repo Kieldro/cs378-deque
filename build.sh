@@ -16,7 +16,7 @@ echo GENERATING COMMIT LOG...
 git log > Deque.log
 
 echo RUNNING DOXYGEN...
-# doxygen -g
+#doxygen -g
 # EXTRACT_ALL            = YES
 # EXTRACT_PRIVATE        = YES
 # EXTRACT_STATIC         = YES
@@ -24,8 +24,7 @@ echo RUNNING DOXYGEN...
 doxygen Doxyfile
 
 zip Deque README.txt html/* Deque.h Deque.log TestDeque.c++ TestDeque.out
-
-turnin --submit	inbleric cs378pj4 Deque.zip
-turnin --list	inbleric cs378pj4
-turnin --verify	inbleric cs378pj4
+turnin --submit inbleric cs378pj4 Deque.zip
+turnin --list   inbleric cs378pj4
+turnin --verify inbleric cs378pj4
 MULTICOMMENT
