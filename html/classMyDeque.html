@@ -63,6 +63,11 @@ allocator_type::const_pointer&nbsp;</td><td class="memItemRight" valign="bottom"
 <tr><td class="memItemLeft" align="right" valign="top">typedef allocator_type::reference&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a9e89ddd823825b5b1e97489f54193e5a">reference</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
 allocator_type::const_reference&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a170d341717c599a26ab756f53b3dadbf">const_reference</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+allocator_type::template <br class="typebreak"/>
+rebind&lt; T * &gt;::other&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#aa205f6eb4953ae8849041a38cd250f4a">pointer_allocator_type</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+pointer_allocator_type::pointer&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a></td></tr>
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a734791c427ef48eb91b1ffae30ba4201">MyDeque</a> (const <a class="el" href="classMyDeque.html#afeb6e9796deffe541fd9de982a5517d0">allocator_type</a> &amp;a=<a class="el" href="classMyDeque.html#afeb6e9796deffe541fd9de982a5517d0">allocator_type</a>())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a90bd778bf42eb5e73000f55b3db26051">MyDeque</a> (<a class="el" href="classMyDeque.html#af6a509bfd15ec8760bb0bd6797c63139">size_type</a> s, <a class="el" href="classMyDeque.html#a170d341717c599a26ab756f53b3dadbf">const_reference</a> v=<a class="el" href="classMyDeque.html#aa04bc73c54add31bab07aaaee5ba5480">value_type</a>(), const <a class="el" href="classMyDeque.html#afeb6e9796deffe541fd9de982a5517d0">allocator_type</a> &amp;a=<a class="el" href="classMyDeque.html#afeb6e9796deffe541fd9de982a5517d0">allocator_type</a>())</td></tr>
@@ -96,6 +101,11 @@ allocator_type::const_reference&nbsp;</td><td class="memItemRight" valign="botto
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a9d8cfd8051a2b7e633d354437712f0e5">valid</a> () const </td></tr>
 <tr><td colspan="2"><h2>Private Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#afeb6e9796deffe541fd9de982a5517d0">allocator_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#acf5da7a2ad53210e5a10cd8d2930b04c">_a</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#aa205f6eb4953ae8849041a38cd250f4a">pointer_allocator_type</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#af226453d767e1aa351361493f312e29a">_pa</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a3077723844e37a6fd72e9aa817f99123">_fr</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a0b7249299cf9a23b5ba26b8b5f58a9ed">_ba</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a875ad6af9152140966a7b5a623493f8b">_b</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a7fbf030ec04defe51955f675ab60b85e">_e</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a53707a87df3edcebe3990dbf7bb05165">_front</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#aa7fa3ae369f94840529bfbdd673d4446">_begin</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyDeque.html#a1b305eb9aba5539cf9c6dcfeae3f287d">_end</a></td></tr>
@@ -176,6 +186,36 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef allocator_type::pointer <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa205f6eb4953ae8849041a38cd250f4a"></a><!-- doxytag: member="MyDeque::pointer_allocator_type" ref="aa205f6eb4953ae8849041a38cd250f4a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef allocator_type::template rebind&lt;T*&gt;::other <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#aa205f6eb4953ae8849041a38cd250f4a">pointer_allocator_type</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a38098edd3066409a890e71b3922c689a"></a><!-- doxytag: member="MyDeque::pointer_pointer" ref="a38098edd3066409a890e71b3922c689a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef pointer_allocator_type::pointer <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a></td>
         </tr>
       </table>
 </div>
@@ -933,6 +973,36 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a875ad6af9152140966a7b5a623493f8b"></a><!-- doxytag: member="MyDeque::_b" ref="a875ad6af9152140966a7b5a623493f8b" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a875ad6af9152140966a7b5a623493f8b">_b</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0b7249299cf9a23b5ba26b8b5f58a9ed"></a><!-- doxytag: member="MyDeque::_ba" ref="a0b7249299cf9a23b5ba26b8b5f58a9ed" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a0b7249299cf9a23b5ba26b8b5f58a9ed">_ba</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ac33baf8088ae1b7684369804efaffa64"></a><!-- doxytag: member="MyDeque::_back" ref="ac33baf8088ae1b7684369804efaffa64" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -963,6 +1033,21 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a7fbf030ec04defe51955f675ab60b85e"></a><!-- doxytag: member="MyDeque::_e" ref="a7fbf030ec04defe51955f675ab60b85e" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a7fbf030ec04defe51955f675ab60b85e">_e</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a1b305eb9aba5539cf9c6dcfeae3f287d"></a><!-- doxytag: member="MyDeque::_end" ref="a1b305eb9aba5539cf9c6dcfeae3f287d" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -978,6 +1063,21 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a3077723844e37a6fd72e9aa817f99123"></a><!-- doxytag: member="MyDeque::_fr" ref="a3077723844e37a6fd72e9aa817f99123" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMyDeque.html#a38098edd3066409a890e71b3922c689a">pointer_pointer</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a3077723844e37a6fd72e9aa817f99123">_fr</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a53707a87df3edcebe3990dbf7bb05165"></a><!-- doxytag: member="MyDeque::_front" ref="a53707a87df3edcebe3990dbf7bb05165" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -986,6 +1086,21 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMyDeque.html#a9af39f8c74b12cfa2a1577a0cac4346a">pointer</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#a53707a87df3edcebe3990dbf7bb05165">_front</a><code> [private]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af226453d767e1aa351361493f312e29a"></a><!-- doxytag: member="MyDeque::_pa" ref="af226453d767e1aa351361493f312e29a" args="" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMyDeque.html#aa205f6eb4953ae8849041a38cd250f4a">pointer_allocator_type</a> <a class="el" href="classMyDeque.html">MyDeque</a>&lt; T, A &gt;::<a class="el" href="classMyDeque.html#af226453d767e1aa351361493f312e29a">_pa</a><code> [private]</code></td>
         </tr>
       </table>
 </div>
@@ -1011,7 +1126,7 @@ template&lt;typename T , typename A  = std::allocator&lt;T&gt;&gt; </div>
 </iframe>
 </div>
 
-<hr class="footer"/><address style="text-align: right;"><small>Generated on Sat Jul 14 14:59:57 2012 by&nbsp;
+<hr class="footer"/><address style="text-align: right;"><small>Generated on Mon Jul 16 18:21:46 2012 by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.6.3 </small></address>
 </body>

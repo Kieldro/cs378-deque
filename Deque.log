@@ -1,3 +1,156 @@
+commit 156e2e7cf8a2e77fa817d7cbe246f3b333a4c624
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 18:15:36 2012 -0500
+
+    fixed leak
+
+commit ad61695b44cece79d4098c2c11127d5bd7f0c8b0
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 17:57:58 2012 -0500
+
+    fixing leak
+
+commit 73e8fb6c3d510a75e394874dd52e1c4d1f1b9e62
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 17:21:21 2012 -0500
+
+    working on destructor
+
+commit d7f7e553bdfe6265ae0b39beb73e01344789f0f0
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 16:54:00 2012 -0500
+
+    finished adding code to MyDeque
+
+commit 12231257b883bcf88b5249c98aed10691c752567
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 16:40:46 2012 -0500
+
+    moved some initializations to initialization list
+
+commit 09d57e4a50bdca6d63c74a7cda354f7ff77f5066
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 16:32:38 2012 -0500
+
+    fixed bug in MyDeque(s,v,a)
+
+commit d821cc9371289f295d7763916f7bc156d5336cb6
+Merge: 487a36d 79de066
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Mon Jul 16 16:23:23 2012 -0500
+
+    Merge branch 'master' of github.com:Kieldro/cs378-deque
+
+commit 79de06632a65b7be0dcc1f4abef58bc6e4b96ef0
+Author: fin <fin@cs.utexas.edu>
+Date:   Mon Jul 16 16:22:38 2012 -0500
+
+    working on MyDeque(s,v,a)
+
+commit 487a36d6d41490172f9af5c86826475f1516ba04
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Mon Jul 16 16:21:33 2012 -0500
+
+    removed superfluous space.
+
+commit fa6a826f72dcbdf8a9d75a524b45986e40e005a7
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Mon Jul 16 14:42:31 2012 -0500
+
+    added some variable for v2
+
+commit e0f4fe8cd61a7541c1e978978136b0e429dd097c
+Merge: 0094b4f b1157ab
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Mon Jul 16 11:07:48 2012 -0500
+
+    Merge branch 'master' of github.com:Kieldro/cs378-deque
+
+commit 0094b4f77d0d7b86d059c893ace7479d4e8f9db8
+Author: Fionnuala Gunter <fionnuala.gunter@gmail.com>
+Date:   Mon Jul 16 11:07:30 2012 -0500
+
+    fixed erase bug
+
+commit b1157ab4020517d013b5813afae0f102a7c5dd35
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 14:38:57 2012 -0500
+
+    whitespace
+
+commit 33541ebe4aee060acde32b77940bb51295e478cf
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 14:38:06 2012 -0500
+
+    added pointer_allocator_type
+
+commit a59d64bd30dc5182c009ee7b9c9725668fde3875
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 11:09:15 2012 -0500
+
+    whitespace
+
+commit 6fe6e109aaf94713a98a349d74753cfe8da98d0b
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 11:08:31 2012 -0500
+
+    added WIDTH constant
+
+commit 6538bf991be5f8f8740235af9ef8356e12669f0b
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 11:06:58 2012 -0500
+
+    whitespace
+
+commit 5206a0e4912a95f59361bc3ecdec3f98424728cc
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 11:06:16 2012 -0500
+
+    whitespace
+
+commit 71fadea97724eccbd4dbf7a5e9d2db4526a43908
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 11:00:31 2012 -0500
+
+    added Slavcho and Daniel's iterator tests
+
+commit 7e5f3e4c55c60c7c99732f5f6111dc2c46507bac
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 10:44:17 2012 -0500
+
+    removed commented debug print and set DEBUG = false
+
+commit ac19b0f3ebe23b2143e1c82cdffab0262b5f025a
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 10:41:21 2012 -0500
+
+    whitespace
+
+commit 4097a68df1eed30731c1afeed6a2b85349507900
+Author: fin <fin@cs.utexas.edu>
+Date:   Sun Jul 15 10:37:57 2012 -0500
+
+    whitespace
+
+commit 637d22e9dfcb85649df551ced06df7136a762844
+Merge: 7c1eb61 0a92446
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 14 15:16:23 2012 -0500
+
+    Merge branch 'master' of github.com:Kieldro/cs378-deque
+
+commit 7c1eb619fb99db5352f529a8cfb6de41a48685ff
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 14 15:13:04 2012 -0500
+
+    First turnin version. v1.0
+
+commit 0a92446e451aced971093435591de36b3ee347e0
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jul 14 15:13:04 2012 -0500
+
+    turned inversion.
+
 commit 7a0fb599a00fe1fb33acfd4919a1535bbd7b5bb7
 Author: Ian Buitrago <kieldro@gmail.com>
 Date:   Sat Jul 14 14:48:01 2012 -0500
