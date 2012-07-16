@@ -612,7 +612,7 @@ class MyDeque {
 		 * Removes the element at iterator position pos and returns the position of the next element
 		 */
 		iterator erase (iterator pos) {
-			if(pos == end() )
+			if(pos == end() - 1)
 				pop_back();
 			else {
 				std::copy(pos+1, end(), pos);

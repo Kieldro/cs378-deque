@@ -578,11 +578,11 @@ struct TestDeque : CppUnit::TestFixture {
 	
 	void test_erase_3 () {
 		C x(5,17);
-		x.erase(x.begin()+5);
+		x.erase(x.begin()+4);
 		CPPUNIT_ASSERT(x.size() == 4);
 		CPPUNIT_ASSERT(x[3] == 17);
 	}
-	
+
 	// -----
 	// swap
 	void test_swap_1 () {
@@ -852,7 +852,7 @@ struct TestDeque : CppUnit::TestFixture {
 	CPPUNIT_TEST(test_resize_8);
 	CPPUNIT_TEST(test_erase_1); 
 	CPPUNIT_TEST(test_erase_2); 
-	CPPUNIT_TEST(test_erase_3);  
+	CPPUNIT_TEST(test_erase_3); 
 	CPPUNIT_TEST(test_swap_1);
 	CPPUNIT_TEST(test_swap_2);
 	CPPUNIT_TEST(test_swap_3);
